@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from './not-found.module.css'
 import Link from 'next/link'
 
