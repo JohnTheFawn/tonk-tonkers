@@ -5,14 +5,18 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          <Link href="/">Tonk Tonkers <code className={styles.code}>src/app/page.tsx</code></Link>
-        </p>
+        <Link href="/">
+          <p>
+            Tonk Tonkers | <code className={styles.code}>src/app/page.tsx</code>
+          </p>
+        </Link>
       </div>
       <div className={styles.description}>
-        <p>
-          <Link href="/fflogs">FF Logs <code className={styles.code}>src/app/fflogs/page.tsx</code></Link> 
-        </p>
+        <Link href="/fflogs">
+          <p>
+            FF Logs | <code className={styles.code}>src/app/fflogs/page.tsx</code> 
+          </p>
+        </Link>
       </div>
     </main>
   )
