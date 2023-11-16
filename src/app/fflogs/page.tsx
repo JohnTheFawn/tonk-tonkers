@@ -108,20 +108,7 @@ function createRankingBlock(
         </th>
       </thead>
       <tbody>
-        {rankings.map((
-          ranking: { 
-            encounter: { 
-              id: Key;
-              name: string;
-            };
-            rankPercent: number;
-            medianPercent: number;
-            totalKills: number; 
-            allStars: {
-              points: number;
-              rank: number;
-            };
-          }) => 
+        {rankings.map((ranking) => 
           <tr key={ranking.encounter.id}>
             <td>
               {ranking.encounter.name}
