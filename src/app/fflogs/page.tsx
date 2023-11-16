@@ -1,3 +1,4 @@
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import styles from './page.module.css'
 
 let accessToken = '';
@@ -8,10 +9,14 @@ const authUrl = baseUrl + '/oauth/token';
 const apiUrl = baseUrl + '/api/v2';
 
 async function getAccessToken() {
+  let auth: {
+    access_token: string,
+    expires_in: number
+  };
   if(accessToken){
     if(accessTokenExpiresAt === null || new Date() > accessTokenExpiresAt){
       console.log('FFLogs - Access token expired, fetching new one.');
-      const auth = await generateAccessToken();
+      auth = await((await generateAuthentication()).json());
       accessToken = auth.access_token;
       accessTokenExpiresAt = new Date(new Date().getTime() + auth.expires_in)
       return getAccessToken();
@@ -22,8 +27,7 @@ async function getAccessToken() {
   }
   else{
     console.log('FFLogs - No access token detected, creating one.');
-    const res = await generateAccessToken();
-    const auth = await res.json();
+    auth = await((await generateAuthentication()).json());
     accessToken = auth.access_token;
     accessTokenExpiresAt = new Date(new Date().getTime() + auth.expires_in)
     return getAccessToken();
@@ -50,7 +54,7 @@ async function getRankings(serverSlug: string, characterName: string){
   });
 }
 
-function generateAccessToken(){
+function generateAuthentication(){
   return fetch(authUrl, {
     method: 'POST',
     headers: {
@@ -65,6 +69,83 @@ function generateAccessToken(){
 
 function friendlyPercentage(raw: number){
   return raw.toFixed(1);
+}
+
+function createRankingBlock(
+  rankings: {
+    encounter: {
+      id: Key;
+      name: string;
+    };
+    rankPercent: number;
+    medianPercent: number;
+    totalKills: number;
+    allStars: {
+      points: number;
+      rank: number;
+    };
+  }[]){
+  return (
+    <table>
+      <thead>
+        <th>
+          Encounter
+        </th>
+        <th>
+          Best %
+        </th>
+        <th>
+          Median %
+        </th>
+        <th>
+          Kills
+        </th>
+        <th>
+          Points
+        </th>
+        <th>
+          Rank
+        </th>
+      </thead>
+      <tbody>
+        {rankings.map((
+          ranking: { 
+            encounter: { 
+              id: Key;
+              name: string;
+            };
+            rankPercent: number;
+            medianPercent: number;
+            totalKills: number; 
+            allStars: {
+              points: number;
+              rank: number;
+            };
+          }) => 
+          <tr key={ranking.encounter.id}>
+            <td>
+              {ranking.encounter.name}
+            </td>
+            <td className={styles.textAlignRight}>
+              {friendlyPercentage(ranking.rankPercent)}%
+            </td>
+            <td className={styles.textAlignRight}>
+              {friendlyPercentage(ranking.medianPercent)}%
+            </td>
+            <td className={styles.textAlignRight}>
+              {ranking.totalKills}
+            </td>
+            <td className={styles.textAlignRight}>
+              {ranking.allStars.points}
+            </td>
+            <td className={styles.textAlignRight}>
+              {ranking.allStars.rank}
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
 }
 
 export default async function Home() {
@@ -91,14 +172,15 @@ export default async function Home() {
           {character.name}
           </p>
           <p>
-          Best Performance Average: {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
+          Best Avg.: {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
           </p>
           <p>
-          Median Performance Average: {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
+          Median Avg.: {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
           </p>
+          {createRankingBlock(rankings)}
         </div>
       </main>
-    )
+    );
   }
 
   return (
@@ -109,5 +191,5 @@ export default async function Home() {
         </p>
       </div>
     </main>
-  )
+  );
 }
