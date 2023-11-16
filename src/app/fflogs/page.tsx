@@ -71,6 +71,13 @@ function friendlyPercentage(raw: number){
   return raw.toFixed(1);
 }
 
+function convertMillisecondsToFriendly(milliseconds: number){
+  let response = '';
+  const seconds = Math.floor((milliseconds / 1000) % 60);
+  const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+  return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+}
+
 function createRankingBlock(
   rankings: {
     encounter: {
@@ -80,6 +87,7 @@ function createRankingBlock(
     rankPercent: number;
     medianPercent: number;
     totalKills: number;
+    fastestKill: number;
     allStars: {
       points: number;
       rank: number;
@@ -88,24 +96,29 @@ function createRankingBlock(
   return (
     <table>
       <thead>
-        <th>
-          Encounter
-        </th>
-        <th>
-          Best %
-        </th>
-        <th>
-          Median %
-        </th>
-        <th>
-          Kills
-        </th>
-        <th>
-          Points
-        </th>
-        <th>
-          Rank
-        </th>
+        <tr>
+          <th>
+            Encounter
+          </th>
+          <th>
+            Best %
+          </th>
+          <th>
+            Median %
+          </th>
+          <th>
+            Kills
+          </th>
+          <th>
+            Fastest
+          </th>
+          <th>
+            Points
+          </th>
+          <th>
+            Rank
+          </th>
+        </tr>
       </thead>
       <tbody>
         {rankings.map((ranking) => 
@@ -123,6 +136,9 @@ function createRankingBlock(
               {ranking.totalKills}
             </td>
             <td className={styles.textAlignRight}>
+              {convertMillisecondsToFriendly(ranking.fastestKill)}
+            </td>
+            <td className={styles.textAlignRight}>
               {ranking.allStars.points}
             </td>
             <td className={styles.textAlignRight}>
@@ -137,12 +153,7 @@ function createRankingBlock(
 
 export default async function Home() {
   const res = await getRankings('Coeurl', 'Tonk Tonkers');
-  if(!res.ok){
-    console.log('failed');
-    console.log(res.body);
-    console.log(res.status, res.statusText);
-  }
-  else{
+  if(res.ok){
     const response = await res.json();
     const character = response.data.characterData.character;
     //console.log(character);
@@ -169,6 +180,10 @@ export default async function Home() {
       </main>
     );
   }
+  
+  console.log('failed');
+  console.log(res.body);
+  console.log(res.status, res.statusText);
 
   return (
     <main className={styles.main}>
