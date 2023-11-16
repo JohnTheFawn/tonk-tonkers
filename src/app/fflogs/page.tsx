@@ -1,7 +1,7 @@
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import styles from './page.module.css'
 
-let accessToken = '';
+let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
 
 const baseUrl = 'https://www.fflogs.com';
