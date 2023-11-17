@@ -18,7 +18,8 @@ export default function Home() {
             <div className={styles.description}>
                 <h3>Male/Female</h3>
                 <p>- Group 1 will take Male (West), Group 2 will take Female (East).</p>
-                <p>- The 4 people closest to each will get a debuff preventing them from damaging the other, make sure you don&#39;t stand too close to the wrong one as they overlap in the middle</p>
+                <p>- The 4 people closest to each will get a debuff (Packet Filter F or Packet Filter M) preventing them from damaging the other, make sure you don&#39;t stand too close to the wrong one as they overlap in the middle</p>
+                <p>- You will be able to get 2-3 gcds of cleave in at the start before the Packet Filter debuff goes out</p>
                 <p>- Male&#39;s auto attacks are physical damage.</p>
                 <p>- Female&#39;s auto attacks are magic damage.</p>
 
@@ -27,9 +28,8 @@ export default function Home() {
                 <p>- Rampart needs to be used when Omega jumps away in Phase 1.</p>
                 <p>- Tanks use all your mits except your 30% (Sentinel/Vengeance/Shadow Wall/Nebula).</p>
                 <p>- The following 3 autos do about 38,000 each (108,000 total) so try to have some mit/healing to handle this as well (second sheltron, equilibrium, second oblation, and aurora). You will still need help from healers</p>
-                <p>- Tank 1 can use Reprisal on this. It will only work on their target due to the firewall debuff.</p>
+                <p>- Tank 1 can use Reprisal on this. It will only work on their target due to the Packet Filter debuff.</p>
 
-                
                 <hr/>
                 <h3>Party Synergy</h3>
                 <p>- Tanks can taunt each other&#39;s target during this cast so they don&#39;t need to worry about clipping later.</p>
@@ -99,8 +99,8 @@ export default function Home() {
                 </div>
                 <br/>
 
-                <p>- After this resolves Male and Female will be targettable. Note that they have changed genders so tanks will need to regain enmity by taunting (either before they go away or before your first gcd, they will double auto a tank if you use it after).</p>
-                <p>- Male will be where North was (he is the middle clone). He will auto 2-3 times for 38,000 each before locking in place. He will need to be repositioned mid for the next mechanic so melee/tanks can hit him.</p>
+                <p>- Shortly after the stacks resolve Male and Female will be targettable. Note that they have changed genders so tanks will need to regain enmity by taunting (either before they go away or before your first gcd, they will double auto a tank if you use it after).</p>
+                <p>- Male will be where North was (he is the middle clone). He will auto 2-3 times for 38,000 each (76,000 - 114,000 total) before locking in place. He will need to be repositioned mid for the next mechanic so melee/tanks can hit him.</p>
                 <p>- Female will be middle. She will auto 5 times for 38,000 each (190,000 total). Tank 2 will need heals/mit to live. Tank buddy mit can be used early on here and be up for the tankbuster. Tank 2 can use Reprisal to help with their auto attacks.</p>
 
                 <hr/>
