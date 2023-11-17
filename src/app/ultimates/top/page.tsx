@@ -424,10 +424,10 @@ export default function Home() {
                     <h2>Mit Cheat Sheet</h2>
                     <br/>
                     <p>
-                        15s mit should be used after the second hit of "Solar Ray"
+                        15s mit should be used after the second hit of &#34;Solar Ray&#34;
                     </p>
                     <p>
-                        10s mit should be used at the start of the "Run Dynamis" cast
+                        10s mit should be used at the start of the &#34;Run Dynamis&#34; cast
                     </p>
                     <br/>
                     <div className={styles.description}>
