@@ -24,15 +24,15 @@ export default function Home() {
                 <p>- Female&#39;s auto attacks are magic damage.</p>
 
                 <hr/>
-                <h3>Solar Ray Tankbusters</h3>
+                <h3>Solar Ray Tankbusters (165,000 - 190,000)</h3>
                 <p>- Rampart needs to be used when Omega jumps away in Phase 1.</p>
                 <p>- Tanks use all your mits except your 30% (Sentinel/Vengeance/Shadow Wall/Nebula).</p>
-                <p>- The following 3 autos do about 38,000 each (108,000 total) so try to have some mit/healing to handle this as well (second sheltron, equilibrium, second oblation, and aurora). You will still need help from healers</p>
+                <p>- The following 3 autos do about 38,000 each (108,000 total) so try to have some mit/healing to handle this as well (second sheltron, equilibrium, second oblation, and aurora). You will still most likely need help from healers</p>
                 <p>- Tank 1 can use Reprisal on this. It will only work on their target due to the Packet Filter debuff.</p>
 
                 <hr/>
                 <h3>Party Synergy</h3>
-                <p>- Tanks can taunt each other&#39;s target during this cast so they don&#39;t need to worry about clipping later.</p>
+                <p>- Tanks can taunt each other&#39;s target during this cast so they don&#39;t need to worry about clipping later. It may cause you to lose an auto attack (only really important for Paladins depending on how many hard casts they did).</p>
                 <br/>
                 <p>- Conga behind Male/Female<br/>Healer 1 - Ranged 1 - Melee 1 - Tank 1 - Tank 2 - Melee 2 - Ranged 2 - Healer 2</p>
                 <p>- If someone on your left has the same shape as you, you are going to the right of the eye to resolve your tether.</p>
@@ -100,7 +100,7 @@ export default function Home() {
                 <br/>
 
                 <p>- Shortly after the stacks resolve Male and Female will be targettable. Note that they have changed genders so tanks will need to regain enmity by taunting (either before they go away or before your first gcd, they will double auto a tank if you use it after).</p>
-                <p>- Male will be where North was (he is the middle clone). He will auto 2-3 times for 38,000 each (76,000 - 114,000 total) before locking in place. He will need to be repositioned mid for the next mechanic so melee/tanks can hit him.</p>
+                <p>- Male will be where North was (he is the middle clone). He will auto 3 times for 38,000 each (114,000 total) before locking in place to make a shield and then start casting. He will need to be repositioned mid before this so melee/tanks can hit him. If Tank 1 didn't use reprisal earlier, this is their last chance to use it before Phase 3.</p>
                 <p>- Female will be middle. She will auto 5 times for 38,000 each (190,000 total). Tank 2 will need heals/mit to live. Tank buddy mit can be used early on here and be up for the tankbuster. Tank 2 can use Reprisal to help with their auto attacks.</p>
 
                 <hr/>
