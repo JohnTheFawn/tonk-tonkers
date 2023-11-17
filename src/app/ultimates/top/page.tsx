@@ -62,6 +62,12 @@ export default function Home() {
                 </h1>
             </Link>
 
+            <Link className={styles.description} href="/ultimates/top/clearvods" >
+                <h1>
+                    Clear Vods
+                </h1>
+            </Link>
+
             {/*Phase 1*/}
             <details className={styles.description}>
                 <summary>
@@ -89,6 +95,8 @@ export default function Home() {
                     <h2>Mit Cheat Sheet</h2>
                     <br/>
                     <p>10s mitigations should catch 2 stacks during Pantokrator</p>
+                    <br/>
+                    <p>Tanks use Rampart when Omega jumps away</p>
                     <br/>
                     <div className={styles.description}>
                         <h3>Tanks</h3>
@@ -218,6 +226,10 @@ export default function Home() {
                         )}
                     </div>
                 </div>
+
+                <Link className={styles.description} href="/ultimates/top/p2">
+                    <h3>More Info</h3>
+                </Link>
 
             </details>
 
@@ -675,7 +687,6 @@ export default function Home() {
                 </div>
 
             </details>
-
             
         </main>
     )
