@@ -52,7 +52,7 @@ export default function Home() {
                 <p>- Do a quick look for the eye, if you don&#39;t find it before the clones spawn that is fine, focus on the clones.</p>
                 <p>- Resolve the clones. Dont get baited by the fake ones, there will be a male with a sword standing in the middle and a female with a staff standing along the outside (the fake female will also be slightly farther out than the others). Male and Female will always be opposite each other. The snapshot on this is incredibly early, I recommend using Sprint here until you get comfortable (it also helps with getting to your spot after). If you see it pop up on the ground it has already snapshot.</p>
                 <p>- While waiting for the clones to resolve, find the eye if you haven&#39;t. This is your new North.</p>
-                <p>- Mid Glitch: both sides line up in the same BPOG (From North to South: Blue, Pink, Orange, Green) order on each side. Line up with the outside of the markers (or two tick marks if looking at the edge of the arena). If you stand too close to your partner, both of you get a vulnerability stack and die.</p>
+                <p>- Mid Glitch: both sides line up in the same BPOG (From North to South: Blue, Pink, Orange, Green) order on each side. Line up with the outside of the relative intercardinal markers (or roughly two tick marks towards the eye laser if looking at the edge of the arena). If you stand too close to your partner, both of you get a vulnerability stack and die.</p>
                 <p>- Remote Glitch: the right side will adjust their line up to GPOB (From North to South: Green, Pink, Orange, Blue. Green and Blue Swap). All the way to the wall. Square and Circle should be 3-4 tick marks away from the middle so they don&#39;t overlap. X and Triangle still stand infront of the second tick mark.</p>
                 <p>- Spread Damage: 29,000-33,000</p>
                 <div className={styles.description}>
@@ -76,6 +76,7 @@ export default function Home() {
 
                 <p>- After the eye goes off look at both sides. If there are two stacks on the same side, the North-most (closest to where the eye was) will be flexing to the other side. This means their tether partner needs to flex as well to resolve the tether and stack.</p>
                 <p>- Find the side that has 3 males, that is now the new North.</p>
+                <p>- Female will be doing a knockback from mid.</p>
                 <p>- If you were on the left side of the eye, you are getting knocked to the West.</p>
                 <p>- If you were on the right side of the eye, you are either getting knocked South (for Mid Glitch) or East (for Remote Glitch).</p>
                 <p>- If you were the North-most stack and have to flex, this is where that happens, make sure you get knocked to the appropriate side.</p>
