@@ -18,6 +18,13 @@ export default function Home() {
           </p>
         </Link>
       </div>
+      <div className={styles.description}>
+        <Link href="/ultimates">
+          <p>
+            Ultimate Guides | <code className={styles.code}>src/app/ultimates/page.tsx</code> 
+          </p>
+        </Link>
+      </div>
     </main>
   )
 }
