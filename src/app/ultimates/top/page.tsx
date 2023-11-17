@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import styles from './page.module.css'
 
 function createToolboxLink(url: string){
     return (
@@ -11,7 +10,7 @@ function createToolboxLink(url: string){
 
 function createMechanicDescription(mechanicName: string, descriptions: string[]){
     return (
-        <div className={styles.description}>
+        <div className={"card"}>
             <h3>
                 {mechanicName}
             </h3>
@@ -48,38 +47,36 @@ function createMitTable(mitigations: any[]){
 
 export default function Home() {
     return (
-        <main className={styles.main}>
+        <main className={"cardWrapper"}>
 
-            <Link className={styles.description} target="_blank" href="https://docs.google.com/spreadsheets/d/1ROErvG1BhTuNvXqPGcR6ZyyhJ7uNTZdf2WzKyVj9hh4" >
+            <Link className={"card"} target="_blank" href="https://docs.google.com/spreadsheets/d/1ROErvG1BhTuNvXqPGcR6ZyyhJ7uNTZdf2WzKyVj9hh4" >
                 <h1>
                     Mit Sheet
                 </h1>
             </Link>
 
-            <Link className={styles.description} target="_blank" href="https://pastebin.com/2ZVgUnCY" >
+            <Link className={"card"} target="_blank" href="https://pastebin.com/2ZVgUnCY" >
                 <h1>
                     PF Pastebin
                 </h1>
             </Link>
 
-            <Link className={styles.description} href="/ultimates/top/clearvods" >
+            <Link className={"card"} href="/ultimates/top/clearvods" >
                 <h1>
                     Clear Vods
                 </h1>
             </Link>
 
             {/*Phase 1*/}
-            <details className={styles.description}>
+            <details className={"card"}>
                 <summary>
                     <h1>Phase 1</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={styles.description}>  
+                <div className={"card"}>  
                     <h2>Toolbox</h2>
-                    <br/>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=758088204654761&preview=1")}
-                    <br/>
                     {createMechanicDescription(
                         "Program Loop",
                         ["TMRH flex priority, G1 West CCW, G2 North CW"]
@@ -91,14 +88,14 @@ export default function Home() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={styles.description}>
+                <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
                     <br/>
                     <p>10s mitigations should catch 2 stacks during Pantokrator</p>
                     <br/>
                     <p>Tanks use Rampart when Omega jumps away</p>
                     <br/>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -121,7 +118,7 @@ export default function Home() {
                             ]
                         )}
                     </div>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -156,17 +153,15 @@ export default function Home() {
             </details>
 
             {/*Phase 2*/}
-            <details className={styles.description}>
+            <details className={"card"}>
                 <summary>
                     <h1>Phase 2</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={styles.description}>  
+                <div className={"card"}>  
                     <h2>Toolbox</h2>
-                    <br/>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=324285310725761&preview=1#1")}
-                    <br/>
                     {createMechanicDescription(
                         "Male/Female",
                         ["G1 Male, G2 Female"]
@@ -188,14 +183,14 @@ export default function Home() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={styles.description}>
+                <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
                     <br/>
                     <p>
                         Cast 15s mitigations when baiters are hit by male to catch 611 and Cosmo Memory
                     </p>
                     <br/>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -213,7 +208,7 @@ export default function Home() {
                             ]
                         )}
                     </div>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -227,24 +222,22 @@ export default function Home() {
                     </div>
                 </div>
 
-                <Link className={styles.description} href="/ultimates/top/p2">
+                <Link className={"cardLink"} href="/ultimates/top/p2">
                     <h3>More Info</h3>
                 </Link>
 
             </details>
 
             {/*Phase 3*/}
-            <details className={styles.description}>
+            <details className={"card"}>
                 <summary>
                     <h1>Phase 3</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={styles.description}>  
+                <div className={"card"}>  
                     <h2>Toolbox</h2>
-                    <br/>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=243183080764761&preview=1")}
-                    <br/>
                     {createMechanicDescription(
                         "Transition",
                         ["Conga between 3 and 2 (HRMTTMRH), Purple Forward, White back"]
@@ -256,14 +249,12 @@ export default function Home() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={styles.description}>
+                <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
-                    <br/>
                     <p>
                         10s mitigations can be used any time after your 1st gcd to catch Hello World
                     </p>
-                    <br/>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -301,7 +292,7 @@ export default function Home() {
                             ]
                         )}
                     </div>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -341,17 +332,15 @@ export default function Home() {
             </details>
 
             {/*Phase 4*/}
-            <details className={styles.description}>
+            <details className={"card"}>
                 <summary>
                     <h1>Phase 4</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={styles.description}>  
+                <div className={"card"}>  
                     <h2>Toolbox</h2>
-                    <br/>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=595188367474761&preview=1")}
-                    <br/>
                     {createMechanicDescription(
                         "Wave Cannon",
                         ["G1 W, G2 E, TRHM N->S, South most flexes"]
@@ -359,14 +348,12 @@ export default function Home() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={styles.description}>
+                <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
-                    <br/>
                     <p>
                         10s mitigations should catch both a stack and a protean
                     </p>
-                    <br/>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -394,7 +381,7 @@ export default function Home() {
                             ]
                         )}
                     </div>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -411,20 +398,21 @@ export default function Home() {
             </details>
 
             {/*Phase 5*/}
-            <details className={styles.description}>
+            <details className={"card"}>
                 <summary>
                     <h1>Phase 5</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={styles.description}>  
+                <div className={"card"}>  
                     <h2>Toolboxes</h2>
-                    <br/>
                     <h3>Delta</h3>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=732288275415761&preview=1")}
                     <br/>
+                    <br/>
                     <h3>Sigma</h3>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=107380954136761&preview=1")}
+                    <br/>
                     <br/>
                     <h3>Omega</h3>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=078384491946761&preview=1")}
@@ -432,17 +420,15 @@ export default function Home() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={styles.description}>
+                <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
-                    <br/>
                     <p>
                         15s mit should be used after the second hit of &#34;Solar Ray&#34;
                     </p>
                     <p>
                         10s mit should be used at the start of the &#34;Run Dynamis&#34; cast
                     </p>
-                    <br/>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -485,7 +471,7 @@ export default function Home() {
                             ]
                         )}
                     </div>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -545,22 +531,20 @@ export default function Home() {
             </details>
 
             {/*Phase 6*/}
-            <details className={styles.description}>
+            <details className={"card"}>
                 <summary>
                     <h1>Phase 6</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={styles.description}>  
+                <div className={"card"}>  
                     <h2>Toolbox</h2>
-                    <br/>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=829484027197761&preview=1")}
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={styles.description}>
+                <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
-                    <br/>
                     <p>
                         Tank LB Priority: WAR &gt; DRK &gt; PLD &gt; GNB
                     </p>
@@ -570,8 +554,7 @@ export default function Home() {
                     <p>
                         10s mitigations should catch both sets of meteors
                     </p>
-                    <br/>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -634,7 +617,7 @@ export default function Home() {
                             ]
                         )}
                     </div>
-                    <div className={styles.description}>
+                    <div className={"card"}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [

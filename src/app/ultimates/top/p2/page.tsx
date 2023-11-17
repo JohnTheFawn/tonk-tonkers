@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from './page.module.css'
 import midGlitch from '../../../../../public/ultimates/top/mid-glitch.png'
 import remoteGlitch from '../../../../../public/ultimates/top/remote-glitch.png'
 import p2Conga from '../../../../../public/ultimates/top/p2-conga.png'
@@ -11,11 +10,11 @@ import p2RemoteGlitchStack from '../../../../../public/ultimates/top/p2-remote-g
 
 export default function Home() {
     return (
-        <main className={styles.main}>
-            <Link className={styles.description} href="/ultimates/top">
+        <main className={"cardWrapper"}>
+            <Link className={"card"} href="/ultimates/top">
                 <h1>Back to Overview</h1>
             </Link>
-            <div className={styles.description}>
+            <div className={"card"}>
                 <h3>Male/Female</h3>
                 <p>- Group 1 will take Male (West), Group 2 will take Female (East).</p>
                 <p>- The 4 people closest to each will get a debuff (Packet Filter F or Packet Filter M) preventing them from damaging the other, make sure you don&#39;t stand too close to the wrong one as they overlap in the middle</p>
@@ -38,10 +37,10 @@ export default function Home() {
                 <p>- If someone on your left has the same shape as you, you are going to the right of the eye to resolve your tether.</p>
                 <p>- If someone on your right has the same shape as you, you are going to the left of the eye to resolve your tether.</p>
                 <p>- Check your debuff, it will either be Mid Glitch or Remote Glitch.</p>
-                <div className={`${styles.description} ${styles.textAlignCenter}`}>
-                    Mid Glitch: <Image src={midGlitch} className={styles.verticalAlignMiddle} alt="Mid Glitch debuff" width={24} height={32}/>
+                <div className={"card textAlignCenter"}>
+                    Mid Glitch: <Image src={midGlitch} className={"verticalAlignMiddle"} alt="Mid Glitch debuff" width={24} height={32}/>
                     <br/>
-                    Remote Glitch: <Image src={remoteGlitch} className={styles.verticalAlignMiddle} alt="Remote Glitch debuff" width={24} height={32}/>
+                    Remote Glitch: <Image src={remoteGlitch} className={"verticalAlignMiddle"} alt="Remote Glitch debuff" width={24} height={32}/>
                     <br/>
                     <Link href="/ultimates/top/p2-conga.png" target="_blank">
                         <Image src={p2Conga} width={250} height={250} alt="P2 Conga"/>
@@ -55,8 +54,8 @@ export default function Home() {
                 <p>- Mid Glitch: both sides line up in the same BPOG (From North to South: Blue, Pink, Orange, Green) order on each side. Line up with the outside of the relative intercardinal markers (or roughly two tick marks towards the eye laser if looking at the edge of the arena). If you stand too close to your partner, both of you get a vulnerability stack and die.</p>
                 <p>- Remote Glitch: the right side will adjust their line up to GPOB (From North to South: Green, Pink, Orange, Blue. Green and Blue Swap). All the way to the wall. Square and Circle should be 3-4 tick marks away from the middle so they don&#39;t overlap. X and Triangle still stand infront of the second tick mark.</p>
                 <p>- Spread Damage: 29,000-33,000</p>
-                <div className={styles.description}>
-                    <div className={styles.textAlignCenter}>
+                <div className={"card"}>
+                    <div className={"textAlignCenter"}>
                         Mid Glitch (BPOG-BPOG)
                         <br/>
                         <Link href="/ultimates/top/p2-bpog-bpog.png" target="_blank">
@@ -64,7 +63,7 @@ export default function Home() {
                         </Link>
                     </div>
                     <br/>
-                    <div className={styles.textAlignCenter}>
+                    <div className={"textAlignCenter"}>
                         Remote Glitch (BPOG-GPOB)
                         <br/>
                         <Link href="/ultimates/top/p2-bpog-gpob.png" target="_blank">
@@ -83,8 +82,8 @@ export default function Home() {
                 <p>- Mid Glitch: Just outside the marker you get knocked to. If you are looking at rings on the ground that would be the inner edge of the 2nd ring. Careful not to get clipped by the males.</p>
                 <p>- Remote Glitch: To the wall.</p>
                 <p>- Stack Damage: 50,000 - 60,000</p>
-                <div className={styles.description}>
-                    <div className={styles.textAlignCenter}>
+                <div className={"card"}>
+                    <div className={"textAlignCenter"}>
                         Mid Glitch - Behind the marker
                         <br/>
                         <Link href="/ultimates/top/p2-mid-glitch-stack.png" target="_blank">
@@ -92,7 +91,7 @@ export default function Home() {
                         </Link>
                     </div>
                     <br/>
-                    <div className={styles.textAlignCenter}>
+                    <div className={"textAlignCenter"}>
                         Remote Glitch - To the wall
                         <br/>
                         <Link href="/ultimates/top/p2-remote-glitch-stack.png" target="_blank">
