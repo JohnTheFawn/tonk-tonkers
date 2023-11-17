@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -10,9 +11,9 @@ export default function Home() {
             <div className={styles.description}>
                 <h3>Male/Female</h3>
                 <p>- Group 1 will take Male (West), Group 2 will take Female (East).</p>
-                <p>- The 4 people closest to each will get a debuff preventing them from damaging the other, make sure you don't stand too close to the wrong one as they overlap in the middle</p>
-                <p>- Male's auto attacks are physical damage.</p>
-                <p>- Female's auto attacks are magic damage.</p>
+                <p>- The 4 people closest to each will get a debuff preventing them from damaging the other, make sure you don&#39;t stand too close to the wrong one as they overlap in the middle</p>
+                <p>- Male&#39;s auto attacks are physical damage.</p>
+                <p>- Female&#39;s auto attacks are magic damage.</p>
 
                 <hr/>
                 <h3>Solar Ray Tankbusters</h3>
@@ -24,32 +25,32 @@ export default function Home() {
                 
                 <hr/>
                 <h3>Party Synergy</h3>
-                <p>- Tanks can taunt each other's target during this cast so they don't need to worry about clipping later.</p>
+                <p>- Tanks can taunt each other&#39;s target during this cast so they don&#39;t need to worry about clipping later.</p>
                 <br/>
                 <p>- Conga behind Male/Female<br/>Healer 1 - Ranged 1 - Melee 1 - Tank 1 - Tank 2 - Melee 2 - Ranged 2 - Healer 2</p>
                 <p>- If someone on your left has the same shape as you, you are going to the right of the eye to resolve your tether.</p>
                 <p>- If someone on your right has the same shape as you, you are going to the left of the eye to resolve your tether.</p>
                 <p>- Check your debuff, it will either be Mid Glitch or Remote Glitch.</p>
                 <div className={`${styles.description} ${styles.textAlignCenter}`}>
-                    Mid Glitch: <img src="/ultimates/top/mid-glitch.png" className={styles.verticalAlignMiddle}/>
+                    Mid Glitch: <Image src="/ultimates/top/mid-glitch.png" className={styles.verticalAlignMiddle} alt="Mid Glitch debuff"/>
                     <br/>
-                    Remote Glitch: <img src="/ultimates/top/remote-glitch.png" className={styles.verticalAlignMiddle}/>
+                    Remote Glitch: <Image src="/ultimates/top/remote-glitch.png" className={styles.verticalAlignMiddle} alt="Remote Glitch debuff"/>
                     <br/>
-                    <img src="/ultimates/top/p2-conga.png" width="250px"/>
+                    <Image src="/ultimates/top/p2-conga.png" width={250} alt="P2 Conga"/>
                 </div>
                 
                 <br/>
-                <p>- Do a quick look for the eye, if you don't find it before the clones spawn that is fine, focus on the clones.</p>
+                <p>- Do a quick look for the eye, if you don&#39;t find it before the clones spawn that is fine, focus on the clones.</p>
                 <p>- Resolve the clones. Dont get baited by the fake ones, there will be a male with a sword standing in the middle and a female with a staff standing along the outside (the fake female will also be slightly farther out than the others). Male and Female will always be opposite each other. The snapshot on this is incredibly early, I recommend Sprint here until you get comfortable (it also helps with getting to your spot after). If you see it pop up on the ground it has already snapshot.</p>
-                <p>- While waiting for the clones to resolve, find the eye if you haven't. This is your new North.</p>
+                <p>- While waiting for the clones to resolve, find the eye if you haven&#39;t. This is your new North.</p>
                 <p>- Mid Glitch: both sides line up in the same BPOG (From North to South: Blue, Pink, Orange, Green) order on each side. Line up with the outside of the markers (or two tick marks if looking at the edge of the arena). If you stand too close to your partner, both of you get a vulnerability stack and die.</p>
-                <p>- Remote Glitch: the right side will adjust their line up to GPOB (From North to South: Green, Pink, Orange, Blue. Green and Blue Swap). All the way to the wall. Square and Circle should be 3-4 tick marks away from the middle so they don't overlap. X and Triangle still stand infront of the second tick mark.</p>
+                <p>- Remote Glitch: the right side will adjust their line up to GPOB (From North to South: Green, Pink, Orange, Blue. Green and Blue Swap). All the way to the wall. Square and Circle should be 3-4 tick marks away from the middle so they don&#39;t overlap. X and Triangle still stand infront of the second tick mark.</p>
                 <div className={styles.description}>
                     <div className={styles.textAlignCenter}>
                         Mid Glitch (BPOG-BPOG)
                         <br/>
                         <Link href="/ultimates/top/p2-bpog-bpog.png" target="_blank">
-                            <img src="/ultimates/top/p2-bpog-bpog.png" width="250px"/>
+                            <Image src="/ultimates/top/p2-bpog-bpog.png" width={250} alt="P2 Mid Glitch tethers and spread"/>
                         </Link>
                     </div>
                     <br/>
@@ -57,7 +58,7 @@ export default function Home() {
                         Remote Glitch (BPOG-GPOB)
                         <br/>
                         <Link href="/ultimates/top/p2-bpog-gpob.png" target="_blank">
-                            <img src="/ultimates/top/p2-bpog-gpob.png" width="250px"/>
+                            <Image src="/ultimates/top/p2-bpog-gpob.png" width={250} alt="P2 Remote Glitch tethers and spread"/>
                         </Link>
                     </div>
                 </div>
@@ -75,7 +76,7 @@ export default function Home() {
                         Mid Glitch - Behind the marker
                         <br/>
                         <Link href="/ultimates/top/p2-mid-glitch-stack.png" target="_blank">
-                            <img src="/ultimates/top/p2-mid-glitch-stack.png" width="250px"/>
+                            <Image src="/ultimates/top/p2-mid-glitch-stack.png" width={250} alt="P2 Mid Glitch Stack"/>
                         </Link>
                     </div>
                     <br/>
@@ -83,7 +84,7 @@ export default function Home() {
                         Remote Glitch - To the wall
                         <br/>
                         <Link href="/ultimates/top/p2-remote-glitch-stack.png" target="_blank">
-                            <img src="/ultimates/top/p2-remote-glitch-stack.png" width="250px"/>
+                            <Image src="/ultimates/top/p2-remote-glitch-stack.png" width={250} alt="P2 Remote Glitch Stack"/>
                         </Link>
                     </div>
                 </div>
