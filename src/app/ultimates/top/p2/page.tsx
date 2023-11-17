@@ -78,7 +78,7 @@ export default function Home() {
                 <p>- Find the side that has 3 males, that is now the new North.</p>
                 <p>- If you were on the left side of the eye, you are getting knocked to the West.</p>
                 <p>- If you were on the right side of the eye, you are either getting knocked South (for Mid Glitch) or East (for Remote Glitch).</p>
-                <p>- If you were the North-most stack and had to flex, this is where that happens, make sure you get knocked to the appropriate side.</p>
+                <p>- If you were the North-most stack and have to flex, this is where that happens, make sure you get knocked to the appropriate side.</p>
                 <p>- Mid Glitch: Just outside the marker you get knocked to. If you are looking at rings on the ground that would be the inner edge of the 2nd ring. Careful not to get clipped by the males.</p>
                 <p>- Remote Glitch: To the wall.</p>
                 <p>- Stack Damage: 50,000 - 60,000</p>
