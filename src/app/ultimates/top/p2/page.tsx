@@ -101,7 +101,7 @@ export default function Home() {
                 </div>
                 <br/>
 
-                <p>- Shortly after the stacks resolve Male and Female will be targettable. Note that they have changed genders so tanks will need to regain enmity by taunting (either before they go away or before your first gcd, they will double auto a tank if you use it after).</p>
+                <p>- Shortly after the stacks resolve Male and Female will be targettable. Note that they have changed genders, make sure you are hitting the correct one, tanks will need to regain enmity by taunting (either before Male/Female go away or before your first gcd, they will double auto a tank if you use it after).</p>
                 <p>- Male will be where North was (he is the middle clone). He will auto 3 times for 38,000 each (114,000 total) before locking in place to make a shield and then start casting. He will need to be repositioned mid before this so melee/tanks can hit him. If Tank 1 didn&#39;t use reprisal earlier, this is their last chance to use it before Phase 3.</p>
                 <p>- Female will be middle. She will auto 5 times for 38,000 each (190,000 total). Tank 2 will need heals/mit to live. Tank buddy mit can be used early on here and be up for the tankbuster. Tank 2 can use Reprisal to help with their auto attacks.</p>
 
