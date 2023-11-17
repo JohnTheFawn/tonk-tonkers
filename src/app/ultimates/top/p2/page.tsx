@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './page.module.css'
+import midGlitch from '../../../../../public/ultimates/top/mid-glitch.png'
+import remoteGlitch from '../../../../../public/ultimates/top/remote-glitch.png'
+import p2Conga from '../../../../../public/ultimates/top/p2-conga.png'
+import p2bpogbpog from '../../../../../public/ultimates/top/p2-bpog-bpog.png'
+import p2bpoggpob from '../../../../../public/ultimates/top/p2-bpog-gpob.png'
+import p2MidGlitchStack from '../../../../../public/ultimates/top/p2-mid-glitch-stack.png'
+import p2RemoteGlitchStack from '../../../../../public/ultimates/top/p2-remote-glitch-stack.png'
 
 export default function Home() {
     return (
@@ -32,11 +39,13 @@ export default function Home() {
                 <p>- If someone on your right has the same shape as you, you are going to the left of the eye to resolve your tether.</p>
                 <p>- Check your debuff, it will either be Mid Glitch or Remote Glitch.</p>
                 <div className={`${styles.description} ${styles.textAlignCenter}`}>
-                    Mid Glitch: <Image src="/ultimates/top/mid-glitch.png" className={styles.verticalAlignMiddle} alt="Mid Glitch debuff"/>
+                    Mid Glitch: <Image src={midGlitch} className={styles.verticalAlignMiddle} alt="Mid Glitch debuff" width={24} height={32}/>
                     <br/>
-                    Remote Glitch: <Image src="/ultimates/top/remote-glitch.png" className={styles.verticalAlignMiddle} alt="Remote Glitch debuff"/>
+                    Remote Glitch: <Image src={remoteGlitch} className={styles.verticalAlignMiddle} alt="Remote Glitch debuff" width={24} height={32}/>
                     <br/>
-                    <Image src="/ultimates/top/p2-conga.png" width={250} alt="P2 Conga"/>
+                    <Link href="/ultimates/top/p2-conga.png" target="_blank">
+                        <Image src={p2Conga} width={250} height={250} alt="P2 Conga"/>
+                    </Link>
                 </div>
                 
                 <br/>
@@ -50,7 +59,7 @@ export default function Home() {
                         Mid Glitch (BPOG-BPOG)
                         <br/>
                         <Link href="/ultimates/top/p2-bpog-bpog.png" target="_blank">
-                            <Image src="/ultimates/top/p2-bpog-bpog.png" width={250} alt="P2 Mid Glitch tethers and spread"/>
+                            <Image src={p2bpogbpog} width={250} height={250} alt="P2 Mid Glitch tethers and spread"/>
                         </Link>
                     </div>
                     <br/>
@@ -58,7 +67,7 @@ export default function Home() {
                         Remote Glitch (BPOG-GPOB)
                         <br/>
                         <Link href="/ultimates/top/p2-bpog-gpob.png" target="_blank">
-                            <Image src="/ultimates/top/p2-bpog-gpob.png" width={250} alt="P2 Remote Glitch tethers and spread"/>
+                            <Image src={p2bpoggpob} width={250} height={250}  alt="P2 Remote Glitch tethers and spread"/>
                         </Link>
                     </div>
                 </div>
@@ -76,7 +85,7 @@ export default function Home() {
                         Mid Glitch - Behind the marker
                         <br/>
                         <Link href="/ultimates/top/p2-mid-glitch-stack.png" target="_blank">
-                            <Image src="/ultimates/top/p2-mid-glitch-stack.png" width={250} alt="P2 Mid Glitch Stack"/>
+                            <Image src={p2MidGlitchStack} width={250} height={250}  alt="P2 Mid Glitch Stack"/>
                         </Link>
                     </div>
                     <br/>
@@ -84,7 +93,7 @@ export default function Home() {
                         Remote Glitch - To the wall
                         <br/>
                         <Link href="/ultimates/top/p2-remote-glitch-stack.png" target="_blank">
-                            <Image src="/ultimates/top/p2-remote-glitch-stack.png" width={250} alt="P2 Remote Glitch Stack"/>
+                            <Image src={p2RemoteGlitchStack} width={250} height={250}  alt="P2 Remote Glitch Stack"/>
                         </Link>
                     </div>
                 </div>
