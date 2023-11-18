@@ -176,7 +176,7 @@ export default function Home() {
                     {createMechanicDescription(
                         "611",
                         [
-                            "Tanks bait male dive",
+                            "Tanks bait Male dive",
                             "If a tank is dead anyone can fill in",
                             "Casters/phys range can take flares out of the stack to reduce dmg for free"]
                     )}
