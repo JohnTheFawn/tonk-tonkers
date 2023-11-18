@@ -49,19 +49,19 @@ export default function Home() {
     return (
         <main className={"cardWrapper"}>
 
-            <Link className={"card"} target="_blank" href="https://docs.google.com/spreadsheets/d/1ROErvG1BhTuNvXqPGcR6ZyyhJ7uNTZdf2WzKyVj9hh4" >
+            <Link className={"cardLink"} target="_blank" href="https://docs.google.com/spreadsheets/d/1ROErvG1BhTuNvXqPGcR6ZyyhJ7uNTZdf2WzKyVj9hh4" >
                 <h1>
                     Mit Sheet
                 </h1>
             </Link>
 
-            <Link className={"card"} target="_blank" href="https://pastebin.com/2ZVgUnCY" >
+            <Link className={"cardLink"} target="_blank" href="https://pastebin.com/2ZVgUnCY" >
                 <h1>
                     PF Pastebin
                 </h1>
             </Link>
 
-            <Link className={"card"} href="/ultimates/top/clearvods" >
+            <Link className={"cardLink"} href="/ultimates/top/clearvods" >
                 <h1>
                     Clear Vods
                 </h1>
@@ -185,11 +185,9 @@ export default function Home() {
                 {/*Mit Cheat Sheet*/}
                 <div className={"card"}>
                     <h2>Mit Cheat Sheet</h2>
-                    <br/>
                     <p>
                         Cast 15s mitigations when baiters are hit by male to catch 611 and Cosmo Memory
                     </p>
-                    <br/>
                     <div className={"card"}>
                         <h3>Tanks</h3>
                         {createMitTable(
