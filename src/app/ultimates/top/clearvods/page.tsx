@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function Home() {
+export default function ClearVodsPage() {
     return (
         <main className={"cardWrapper"}>
             <Link className={"card"} href="/ultimates/top">

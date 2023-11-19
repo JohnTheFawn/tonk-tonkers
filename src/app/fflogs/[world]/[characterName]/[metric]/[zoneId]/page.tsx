@@ -1,6 +1,7 @@
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import styles from './page.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -16,6 +17,12 @@ const JOB_TO_ICON_MAP: Record<string, string> = {
   'reaper': '/icons/jobs/reaper.png',
   'whiteMage': '/icons/jobs/white-mage.png'
 };
+
+const ZONE_ID_ANABASEIOS = 54;
+const ZONE_ID_ABYSSOS = 49;
+const ZONE_ID_ASPHODELOS = 44;
+const ZONE_ID_THE_OMEGA_PROTOCL = 53;
+
 
 async function getAccessToken() {
   let auth: {
@@ -43,7 +50,7 @@ async function getAccessToken() {
   }
 }
 
-async function getRankings(serverSlug: string, characterName: string){
+async function getRankings(serverSlug: string, characterName: string, metric: string, zoneId: number){
   return fetch(apiUrl, {
     method: 'POST',
     headers: {
@@ -56,7 +63,7 @@ async function getRankings(serverSlug: string, characterName: string){
           character(name: "${characterName}", serverSlug: "${serverSlug}", serverRegion: "NA") {
             id,
             name,
-            zoneRankings
+            zoneRankings(metric: ${metric}, zoneID: ${zoneId})
           }
         }
       }`})
@@ -111,32 +118,32 @@ function createRankingBlock(
           <th>
             <h3>Encounter</h3>
           </th>
-          <th>
+          <th style={{width: 90}}>
             <h3>
               Best
             </h3>
           </th>
-          <th>
+          <th style={{width: 90}}>
             <h3>
               Median
             </h3>
           </th>
-          <th>
+          <th style={{width: 90}}>
             <h3>
               Kills
             </h3>
           </th>
-          <th>
+          <th style={{width: 90}}>
             <h3>
               Fastest
             </h3>
           </th>
-          <th>
+          <th style={{width: 90}}>
             <h3>
               Points
             </h3>
           </th>
-          <th>
+          <th style={{width: 90}}>
             <h3>
               Rank
             </h3>
@@ -213,13 +220,25 @@ function createJobIcon(jobName: string){
   );
 }
 
-export default async function Home({params}: {params: {world: string; characterName: string}}) {
-  const res = await getRankings(params.world, decodeURIComponent(params.characterName));
+export default async function FFLogsCharacterPage(
+  {params}:
+  {
+    params: {
+      world: string; 
+      characterName: string;
+      metric: string;
+      zoneId: number;
+    };
+  }) {
+  const res = await getRankings(params.world, decodeURIComponent(params.characterName), params.metric, params.zoneId);
   if(res.ok){
     const response = await res.json();
     const character = response.data.characterData.character;
+    const characterId = character.id;
+    const characterName = character.name;
     //console.log(character);
     const zoneRankings = character.zoneRankings;
+    //console.log(zoneRankings);
     const rankings = zoneRankings.rankings;
     const allStars = zoneRankings.allStars;
     //console.log(rankings);
@@ -232,37 +251,65 @@ export default async function Home({params}: {params: {world: string; characterN
 
     return (
       <div className={`card`}>
+        <div style={{display: 'flex'}}>
+          <div className={`marginBottom`}>
+            <Link className={`button marginRight`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ANABASEIOS}`}>
+              Anabaseios
+            </Link>
+            <Link className={`button marginRight`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ABYSSOS}`}>
+              Abyssos
+            </Link>
+            <Link className={`button marginRight`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ASPHODELOS}`}>
+              Asphodelos
+            </Link>
+            <Link className={`button`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_THE_OMEGA_PROTOCL}`}>
+              The Omega Protocol
+            </Link>
+          </div>
+          <div style={{flex: 1}}/>
+          <div className={`marginBottom`}>
+            <Link className={`button buttonRed marginRight`} href={`/fflogs/${params.world}/${params.characterName}/rdps/${params.zoneId}`}>
+              Damage
+            </Link>
+            <Link className={`button buttonGreen marginRight`} href={`/fflogs/${params.world}/${params.characterName}/hps/${params.zoneId}`}>
+              Healing
+            </Link>
+            <Link className={`button`} href={`/fflogs/${params.world}/${params.characterName}/playerspeed/${params.zoneId}`}>
+              Speed
+            </Link>
+          </div>
+        </div>
         <h1 className={`textAlignCenter`}>
           {character.name}
         </h1>
-          <div className={`${styles.performanceWrapper}`}>
-            <span className={`card ${styles.performanceBlock}`}>
-              <h2>
-                Best Avg.
-              </h2>
-              <h2 className={`${getRankingColor(zoneRankings.bestPerformanceAverage)}`}>
-                {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
-              </h2>
-            </span>
-            <span className={`card ${styles.performanceBlock}`}>
-              <h2>
-                Median Avg.
-              </h2>
-              <h2 className={`${getRankingColor(zoneRankings.medianPerformanceAverage)}`}>
-                {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
-              </h2>
-            </span>
-            <span className={`card ${styles.performanceBlock}`}>
-              <h2>
-                Kills Logged
-              </h2>
-              <h2>
-                {totalKills}
-              </h2>
-            </span>
-          </div>
-          {createRankingBlock(rankings)}
+        <div className={`${styles.performanceWrapper}`}>
+          <span className={`card ${styles.performanceBlock}`}>
+            <h2>
+              Best Avg.
+            </h2>
+            <h2 className={`${getRankingColor(zoneRankings.bestPerformanceAverage)}`}>
+              {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
+            </h2>
+          </span>
+          <span className={`card ${styles.performanceBlock}`}>
+            <h2>
+              Median Avg.
+            </h2>
+            <h2 className={`${getRankingColor(zoneRankings.medianPerformanceAverage)}`}>
+              {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
+            </h2>
+          </span>
+          <span className={`card ${styles.performanceBlock}`}>
+            <h2>
+              Kills Logged
+            </h2>
+            <h2>
+              {totalKills}
+            </h2>
+          </span>
         </div>
+        {createRankingBlock(rankings)}
+      </div>
     );
   }
   

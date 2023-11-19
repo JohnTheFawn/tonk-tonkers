@@ -45,7 +45,7 @@ function createMitTable(mitigations: any[]){
     )
 }
 
-export default function Home() {
+export default function TopPage() {
     return (
         <main className={"cardWrapper"}>
 

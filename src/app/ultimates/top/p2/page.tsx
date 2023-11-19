@@ -8,7 +8,7 @@ import p2bpoggpob from '../../../../../public/ultimates/top/p2-bpog-gpob.png'
 import p2MidGlitchStack from '../../../../../public/ultimates/top/p2-mid-glitch-stack.png'
 import p2RemoteGlitchStack from '../../../../../public/ultimates/top/p2-remote-glitch-stack.png'
 
-export default function Home() {
+export default function P2Page() {
     return (
         <main className={"cardWrapper"}>
             <Link className={"card"} href="/ultimates/top">
