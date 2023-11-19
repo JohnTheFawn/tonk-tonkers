@@ -288,7 +288,7 @@ function createEncounterRankingsBlock(
                 {convertMillisecondsToFriendly(ranking.duration)}
               </td>
               <td className={`textAlignRight`}>
-                <Link href={`https://www.fflogs.com/reports/yMDhRHzZ8wdQFJLb`} target="_blank">
+                <Link href={`https://www.fflogs.com/reports/${ranking.report.code}`} target="_blank">
                   {ranking.report.code}
                 </Link>
               </td>
