@@ -222,6 +222,10 @@ a {
   text-align: right;
 }
 
+.textAlignLeft{
+  text-align: left;
+}
+
 .code {
   font-weight: 700;
   font-family: var(--font-mono);

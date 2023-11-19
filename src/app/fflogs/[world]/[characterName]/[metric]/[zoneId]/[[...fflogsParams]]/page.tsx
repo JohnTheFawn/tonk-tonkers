@@ -219,6 +219,10 @@ function createRankingsBlock(
   );
 }
 
+function convertStartTimeToFriendly(startTime: number){
+  const startTimeDate = new Date(startTime);
+  return (startTimeDate.getMonth() + 1) + '/' + startTimeDate.getDate() + '/' + startTimeDate.getFullYear();
+}
 
 function createEncounterRankingsBlock(
   rankings: {
@@ -234,6 +238,7 @@ function createEncounterRankingsBlock(
     rDPS: number;
     amount: number;
     bestSpec: string;
+    startTime: number;
   }[],
   metric: string
 ){
@@ -242,6 +247,11 @@ function createEncounterRankingsBlock(
     <table className={`${styles.table} marginTop`}>
       <thead>
         <tr>
+          <th>
+            <h3 className={`textAlignLeft`}>
+              Date
+            </h3>
+          </th>
           <th>
             <h3 title="Historical Rank">
               Hist. Rank
@@ -281,7 +291,10 @@ function createEncounterRankingsBlock(
       </thead>
       <tbody>
           {rankings.map((ranking) => 
-            <tr key={ranking.report.code}>
+            <tr key={ranking.startTime}>
+              <td>
+                {convertStartTimeToFriendly(ranking.startTime)}
+              </td>
               <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`}>
                 {friendlyPercentage(ranking.historicalPercent)}%
                 {createJobIcon(ranking.bestSpec)}
