@@ -1,5 +1,6 @@
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 import styles from './page.module.css'
+import Image from 'next/image'
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -7,6 +8,14 @@ let accessTokenExpiresAt: Date | null = null;
 const baseUrl = 'https://www.fflogs.com';
 const authUrl = baseUrl + '/oauth/token';
 const apiUrl = baseUrl + '/api/v2';
+
+const JOB_TO_ICON_MAP: Record<string, string> = {
+  'blackmage': '/icons/jobs/black-mage.png',
+  'darkknight': '/icons/jobs/dark-knight.png',
+  'paladin': '/icons/jobs/paladin.png',
+  'reaper': '/icons/jobs/reaper.png',
+  'whiteMage': '/icons/jobs/white-mage.png'
+};
 
 async function getAccessToken() {
   let auth: {
@@ -88,35 +97,48 @@ function createRankingBlock(
     medianPercent: number;
     totalKills: number;
     fastestKill: number;
+    spec: string;
     allStars: {
       points: number;
       rank: number;
     };
   }[]){
   return (
-    <table>
+    <table className={`${styles.table}`}>
       <thead>
         <tr>
           <th>
-            Encounter
+            <h3>Encounter</h3>
           </th>
           <th>
-            Best %
+            <h3>
+              Best %
+            </h3>
           </th>
           <th>
-            Median %
+            <h3>
+              Median %
+            </h3>
           </th>
           <th>
-            Kills
+            <h3>
+              Kills
+            </h3>
           </th>
           <th>
-            Fastest
+            <h3>
+              Fastest
+            </h3>
           </th>
           <th>
-            Points
+            <h3>
+              Points
+            </h3>
           </th>
           <th>
-            Rank
+            <h3>
+              Rank
+            </h3>
           </th>
         </tr>
       </thead>
@@ -126,28 +148,67 @@ function createRankingBlock(
             <td>
               {ranking.encounter.name}
             </td>
-            <td className={styles.textAlignRight}>
+            <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}>
               {friendlyPercentage(ranking.rankPercent)}%
             </td>
-            <td className={styles.textAlignRight}>
+            <td className={`textAlignRight ${getRankingColor(ranking.medianPercent)}`}>
               {friendlyPercentage(ranking.medianPercent)}%
             </td>
-            <td className={styles.textAlignRight}>
+            <td className={`textAlignRight`}>
               {ranking.totalKills}
             </td>
-            <td className={styles.textAlignRight}>
+            <td className={`textAlignRight`}>
               {convertMillisecondsToFriendly(ranking.fastestKill)}
             </td>
-            <td className={styles.textAlignRight}>
+            <td className={`textAlignRight`}>
               {ranking.allStars.points}
             </td>
-            <td className={styles.textAlignRight}>
+            <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`} title={ranking.spec}>
               {ranking.allStars.rank}
+              {createJobIcon(ranking.spec)}
             </td>
           </tr>
         )}
       </tbody>
     </table>
+  );
+}
+
+function getJobIcon(jobName: string){
+  const parsedJobName = jobName.toLowerCase();
+  return JOB_TO_ICON_MAP[parsedJobName];
+}
+
+function getRankingColor(ranking: number){
+  if(ranking < 25){
+    return styles.grey;
+  }
+  if(ranking < 50){
+    return styles.green;
+  }
+  if(ranking < 75){
+    return styles.blue;
+  }
+  if(ranking < 95){
+    return styles.purple;
+  }
+  if(ranking < 99){
+    return styles.orange;
+  }
+  if(ranking < 100){
+    return styles.pink;
+  }
+  return styles.gold;
+}
+
+function createJobIcon(jobName: string){
+  return (
+    <Image
+      src={getJobIcon(jobName)}
+      className={`verticalAlignMiddle`}
+      alt={`${jobName} icon`}
+      width={20} height={20}
+    />
   );
 }
 
@@ -161,23 +222,46 @@ export default async function Home() {
     const rankings = zoneRankings.rankings;
     const allStars = zoneRankings.allStars;
     console.log(rankings);
-    //console.log(allStars);
+    console.log(allStars);
+    let totalKills = 0;
+    rankings.forEach((ranking: { totalKills: number; }) => {
+      totalKills += ranking.totalKills;
+    });
+
 
     return (
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
+      <div className={`card`}>
+        <h1 className={`textAlignCenter`}>
           {character.name}
-          </p>
-          <p>
-          Best Avg.: {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
-          </p>
-          <p>
-          Median Avg.: {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
-          </p>
+        </h1>
+          <div className={`${styles.performanceWrapper}`}>
+            <span className={`card ${styles.performanceBlock}`}>
+              <h2>
+                Best Avg.
+              </h2>
+              <h2 className={`${getRankingColor(zoneRankings.bestPerformanceAverage)}`}>
+                {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
+              </h2>
+            </span>
+            <span className={`card ${styles.performanceBlock}`}>
+              <h2>
+                Median Avg.
+              </h2>
+              <h2 className={`${getRankingColor(zoneRankings.medianPerformanceAverage)}`}>
+                {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
+              </h2>
+            </span>
+            <span className={`card ${styles.performanceBlock}`}>
+              <h2>
+                Kills Logged
+              </h2>
+              <h2>
+                {totalKills}
+              </h2>
+            </span>
+          </div>
           {createRankingBlock(rankings)}
         </div>
-      </main>
     );
   }
   

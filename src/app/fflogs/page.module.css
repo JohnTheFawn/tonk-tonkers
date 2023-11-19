@@ -1,3 +1,90 @@
-.textAlignRight{
-    text-align: right;
+.background{
+    background-image: url('/fflogs/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+.table{
+    width: 100%;
+    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    border-radius: var(--border-radius);
+    background-color: rgba(var(--callout-rgb), 0.5);
+    padding: 1rem;
+    border-spacing: 0;
+}
+
+.table th {
+    font-weight: bold;
+}
+.table thead > tr {
+    background-color: rgba(238, 240, 241, 0.1);
+}
+
+.table th,
+.table tr td {
+    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    padding: .3rem;
+}
+
+.table td:not(:last-child) {
+    border-right: 1px solid rgba(var(--callout-border-rgb), 0.3);
+}
+
+.table tbody > tr:hover {
+    background-color: rgba(238, 240, 241, 0.1)
+}
+
+.table tbody > tr {
+    cursor: pointer;
+}
+
+.performanceWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    margin-bottom: .5rem;
+}
+
+.performanceBlock {
+    text-align: center;
+}
+
+.performanceBlock > h2 {
+    margin: 0 0;
+}
+
+.performanceBlock > h2:first-child {
+    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+}
+
+.grey {
+    color: #666666;
+}
+
+.green {
+    color: #1eff00;
+}
+
+.blue {
+    color: #0070ff;
+}
+
+.purple {
+    color: #a335ee;
+}
+
+.orange {
+    color: #ff8000;
+}
+
+.pink {
+    color: #e268a8;
+}
+
+.gold {
+    color: #e5cc80;
+}
+

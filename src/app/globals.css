@@ -130,6 +130,10 @@ a {
   border-radius: var(--border-radius);
 }
 
+.cardInline {
+  width: initial;
+}
+
 .card > hr {
     margin-top: .5em;
     margin-bottom: .5em;
@@ -180,6 +184,10 @@ a {
 
 .textAlignCenter {
     text-align: center;
+}
+
+.textAlignRight {
+  text-align: right;
 }
 
 .code {
