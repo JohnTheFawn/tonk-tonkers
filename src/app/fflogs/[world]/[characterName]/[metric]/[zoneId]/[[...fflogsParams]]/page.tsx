@@ -35,8 +35,9 @@ const JOB_TO_ICON_MAP: Record<string, string> = {
 
 const ZONE_ID_ASPHODELOS = 44;
 const ZONE_ID_ABYSSOS = 49;
-const ZONE_ID_THE_OMEGA_PROTOCL = 53;
+const ZONE_ID_THE_OMEGA_PROTOCOL = 53;
 const ZONE_ID_ANABASEIOS = 54;
+const ZONE_ID_TRIALS_3 = 55;
 
 async function getAccessToken() {
   let auth: {
@@ -474,10 +475,16 @@ export default async function FFLogsCharacterPage(
               Asphodelos
             </Link>
             <Link
-              className={`button marginRight ` + (params.zoneId == ZONE_ID_THE_OMEGA_PROTOCL ? `buttonHighlighted` : `` )}
-              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_THE_OMEGA_PROTOCL}`}
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_THE_OMEGA_PROTOCOL ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_THE_OMEGA_PROTOCOL}`}
             >
               The Omega Protocol
+            </Link>
+            <Link
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_TRIALS_3 ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_TRIALS_3}`}
+            >
+              Trials
             </Link>
           </div>
           <div style={{flex: 1}}/>
