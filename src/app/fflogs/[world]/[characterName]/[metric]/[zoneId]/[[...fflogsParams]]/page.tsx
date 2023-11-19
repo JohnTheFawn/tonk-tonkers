@@ -1,4 +1,4 @@
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
+import { Key } from 'react';
 import styles from './page.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,18 +11,31 @@ const fflogsAuthUrl = fflogsBaseUrl + '/oauth/token';
 const fflogsApiUrl = fflogsBaseUrl + '/api/v2';
 
 const JOB_TO_ICON_MAP: Record<string, string> = {
+  'astrologian': '/icons/jobs/astrologian.png',
   'blackmage': '/icons/jobs/black-mage.png',
+  'bluemage': '/icons/jobs/blue-mage.png',
+  'dancer': '/icons/jobs/dancer.png',
   'darkknight': '/icons/jobs/dark-knight.png',
+  'dragoon': '/icons/jobs/dragoon.png',
+  'gunbreaker': '/icons/jobs/gunbreaker.png',
+  'machinist': '/icons/jobs/machinist.png',
+  'monk': '/icons/jobs/monk.png',
+  'ninja': '/icons/jobs/ninja.png',
   'paladin': '/icons/jobs/paladin.png',
   'reaper': '/icons/jobs/reaper.png',
+  'redmage': '/icons/jobs/red-mage.png',
+  'sage': '/icons/jobs/sage.png',
+  'samurai': '/icons/jobs/samurai.png',
+  'scholar': '/icons/jobs/scholar.png',
+  'summoner': '/icons/jobs/summoner.png',
+  'warrior': '/icons/jobs/warrior.png',
   'whitemage': '/icons/jobs/white-mage.png'
 };
 
-const ZONE_ID_ANABASEIOS = 54;
-const ZONE_ID_ABYSSOS = 49;
 const ZONE_ID_ASPHODELOS = 44;
+const ZONE_ID_ABYSSOS = 49;
 const ZONE_ID_THE_OMEGA_PROTOCL = 53;
-
+const ZONE_ID_ANABASEIOS = 54;
 
 async function getAccessToken() {
   let auth: {
@@ -289,7 +302,9 @@ function createEncounterRankingsBlock(
               </td>
               <td className={`textAlignRight`}>
                 <Link href={`https://www.fflogs.com/reports/${ranking.report.code}`} target="_blank">
-                  {ranking.report.code}
+                  <u>
+                    {ranking.report.code}
+                  </u>
                 </Link>
               </td>
             </tr>
