@@ -398,7 +398,7 @@ export default async function FFLogsCharacterPage(
 
 
     return (
-      <div className={`card`}>
+      <div className={`card ${styles.fflogsWrapper}`}>
         <div style={{display: 'flex'}}>
           <div className={`marginBottom`}>
             <Link

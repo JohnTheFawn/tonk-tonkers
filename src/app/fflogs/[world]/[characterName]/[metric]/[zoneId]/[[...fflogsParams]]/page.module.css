@@ -1,3 +1,9 @@
+
+
+.fflogsWrapper {
+    backdrop-filter: blur(2px);
+}
+
 .table{
     width: 100%;
     border: 1px solid rgba(var(--callout-border-rgb), 0.3);
@@ -76,4 +82,3 @@
 .gold {
     color: #e5cc80;
 }
-
