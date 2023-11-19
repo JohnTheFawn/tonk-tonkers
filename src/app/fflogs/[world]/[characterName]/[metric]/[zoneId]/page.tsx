@@ -6,9 +6,9 @@ import Link from 'next/link'
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
 
-const baseUrl = 'https://www.fflogs.com';
-const authUrl = baseUrl + '/oauth/token';
-const apiUrl = baseUrl + '/api/v2';
+const fflogsBaseUrl = 'https://www.fflogs.com';
+const fflogsAuthUrl = fflogsBaseUrl + '/oauth/token';
+const fflogsApiUrl = fflogsBaseUrl + '/api/v2';
 
 const JOB_TO_ICON_MAP: Record<string, string> = {
   'blackmage': '/icons/jobs/black-mage.png',
@@ -51,7 +51,7 @@ async function getAccessToken() {
 }
 
 async function getRankings(serverSlug: string, characterName: string, metric: string, zoneId: number){
-  return fetch(apiUrl, {
+  return fetch(fflogsApiUrl, {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + await getAccessToken(),
@@ -71,7 +71,7 @@ async function getRankings(serverSlug: string, characterName: string, metric: st
 }
 
 function generateAuthentication(){
-  return fetch(authUrl, {
+  return fetch(fflogsAuthUrl, {
     method: 'POST',
     headers: {
       'Authorization': 'Basic ' + btoa(process.env.FF_LOGS_CLIENT_ID + ':' + process.env.FF_LOGS_CLIENT_SECRET),
@@ -253,28 +253,49 @@ export default async function FFLogsCharacterPage(
       <div className={`card`}>
         <div style={{display: 'flex'}}>
           <div className={`marginBottom`}>
-            <Link className={`button marginRight`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ANABASEIOS}`}>
+            <Link
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_ANABASEIOS ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ANABASEIOS}`}
+            >
               Anabaseios
             </Link>
-            <Link className={`button marginRight`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ABYSSOS}`}>
+            <Link
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_ABYSSOS ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ABYSSOS}`}
+            >
               Abyssos
             </Link>
-            <Link className={`button marginRight`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ASPHODELOS}`}>
+            <Link
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_ASPHODELOS ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ASPHODELOS}`}
+            >
               Asphodelos
             </Link>
-            <Link className={`button`} href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_THE_OMEGA_PROTOCL}`}>
+            <Link
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_THE_OMEGA_PROTOCL ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_THE_OMEGA_PROTOCL}`}
+            >
               The Omega Protocol
             </Link>
           </div>
           <div style={{flex: 1}}/>
           <div className={`marginBottom`}>
-            <Link className={`button buttonRed marginRight`} href={`/fflogs/${params.world}/${params.characterName}/rdps/${params.zoneId}`}>
+            <Link
+              className={`button buttonRed marginRight ` + (params.metric == 'rdps' ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/rdps/${params.zoneId}`}
+            >
               Damage
             </Link>
-            <Link className={`button buttonGreen marginRight`} href={`/fflogs/${params.world}/${params.characterName}/hps/${params.zoneId}`}>
+            <Link
+              className={`button buttonGreen marginRight ` + (params.metric == 'hps' ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/hps/${params.zoneId}`}
+            >
               Healing
             </Link>
-            <Link className={`button`} href={`/fflogs/${params.world}/${params.characterName}/playerspeed/${params.zoneId}`}>
+            <Link
+              className={`button ` + (params.metric == 'playerspeed' ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/playerspeed/${params.zoneId}`}
+            >
               Speed
             </Link>
           </div>
