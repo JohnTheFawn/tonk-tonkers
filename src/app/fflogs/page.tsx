@@ -97,10 +97,11 @@ function createRankingBlock(
     medianPercent: number;
     totalKills: number;
     fastestKill: number;
-    spec: string;
+    bestSpec: string;
     allStars: {
       points: number;
       rank: number;
+      total: number;
     };
   }[]){
   return (
@@ -163,9 +164,9 @@ function createRankingBlock(
             <td className={`textAlignRight`}>
               {ranking.allStars.points}
             </td>
-            <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`} title={ranking.spec}>
+            <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}  title={`Rank ${ranking.allStars.rank} out of ${ranking.allStars.total}`}>
               {ranking.allStars.rank}
-              {createJobIcon(ranking.spec)}
+              {createJobIcon(ranking.bestSpec)}
             </td>
           </tr>
         )}
