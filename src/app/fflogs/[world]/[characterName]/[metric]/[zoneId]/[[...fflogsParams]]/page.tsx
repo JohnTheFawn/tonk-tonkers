@@ -354,6 +354,19 @@ function createJobIcon(jobName: string){
   );
 }
 
+function metricToFriendly(metric: string){
+  if(metric == 'rdps'){
+    return 'Damage';
+  }
+  if(metric == 'hps'){
+    return 'Healing';
+  }
+  if(metric == 'playerspeed'){
+    return 'Speed';
+  }
+  return '';
+}
+
 function createRankingChart(ranks: {
     startTime: number;
     historicalPercent: number;
@@ -392,10 +405,22 @@ export default async function FFLogsCharacterPage(
     const character = response.data.characterData.character;
     const characterId = character.id;
     const characterName = character.name;
+    const zoneRankings = character.zoneRankings;
     const encounterRankings = character.encounterRankings;
+
+    let encounterName = '';
+    if(params.fflogsParams){
+      for(let i = 0; i < zoneRankings.rankings.length; i++){
+        const tempRanking = zoneRankings.rankings[i];
+        if(tempRanking.encounter.id == params.fflogsParams[0]){
+          encounterName = tempRanking.encounter.name;
+          break;
+        }
+      }
+    }
+
     //console.log(encounterRankings);
     //console.log(character);
-    const zoneRankings = character.zoneRankings;
     //console.log(zoneRankings);
     const rankings = zoneRankings.rankings;
     const allStars = zoneRankings.allStars;
@@ -494,6 +519,7 @@ export default async function FFLogsCharacterPage(
           </span>
         </div>
         {createRankingsBlock(rankings, `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`)}
+        {encounterRankings ? <h2 className={`textAlignCenter marginTop`}>{encounterName} ({metricToFriendly(params.metric)})</h2> : null}
         {encounterRankings ? createRankingChart(encounterRankings.ranks) : null}
         {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric) : null}
       </div>
