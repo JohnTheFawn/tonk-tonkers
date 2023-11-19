@@ -112,12 +112,12 @@ function createRankingBlock(
           </th>
           <th>
             <h3>
-              Best %
+              Best
             </h3>
           </th>
           <th>
             <h3>
-              Median %
+              Median
             </h3>
           </th>
           <th>
