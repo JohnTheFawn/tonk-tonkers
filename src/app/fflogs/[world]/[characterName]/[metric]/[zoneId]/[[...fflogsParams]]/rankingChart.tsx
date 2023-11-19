@@ -17,7 +17,11 @@ export default function RankingChart(
         maintainAspectRatio: false,
         scales: {
             x: {
-                type: 'timeseries' as const
+                type: 'timeseries' as const,
+                time: {
+                    round: 'day' as const,
+                    unit: 'day' as const
+                }
             },
             y: {
                 beginAtZero: true,
