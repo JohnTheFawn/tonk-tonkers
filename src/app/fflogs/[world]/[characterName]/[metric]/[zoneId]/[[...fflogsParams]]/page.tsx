@@ -457,6 +457,12 @@ export default async function FFLogsCharacterPage(
         <div style={{display: 'flex'}}>
           <div className={`marginBottom`}>
             <Link
+              className={`button marginRight ` + (params.zoneId == ZONE_ID_TRIALS_3 ? `buttonHighlighted` : `` )}
+              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_TRIALS_3}`}
+            >
+              Trials
+            </Link>
+            <Link
               className={`button marginRight ` + (params.zoneId == ZONE_ID_ANABASEIOS ? `buttonHighlighted` : `` )}
               href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_ANABASEIOS}`}
             >
@@ -479,12 +485,6 @@ export default async function FFLogsCharacterPage(
               href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_THE_OMEGA_PROTOCOL}`}
             >
               The Omega Protocol
-            </Link>
-            <Link
-              className={`button marginRight ` + (params.zoneId == ZONE_ID_TRIALS_3 ? `buttonHighlighted` : `` )}
-              href={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${ZONE_ID_TRIALS_3}`}
-            >
-              Trials
             </Link>
           </div>
           <div style={{flex: 1}}/>

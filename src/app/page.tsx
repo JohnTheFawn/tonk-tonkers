@@ -8,7 +8,7 @@ export default function Home() {
           Tonk Tonkers | <code className={"code"}>src/app/page.tsx</code>
         </p>
       </Link>
-      <Link className={"cardLink"} href="/fflogs/Coeurl/Tonk Tonkers/rdps/54">
+      <Link className={"cardLink"} href="/fflogs/Coeurl/Tonk Tonkers/rdps/55/1070">
         <p>
           FF Logs | <code className={"code"}>src/app/fflogs/[world]/[characterName]/[metric]/[zoneId]/[[...fflogsParams]]page.tsx</code> 
         </p>
