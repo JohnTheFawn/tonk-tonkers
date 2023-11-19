@@ -354,7 +354,7 @@ function createJobIcon(jobName: string){
   );
 }
 
-function createRankingTable(ranks: {
+function createRankingChart(ranks: {
     startTime: number;
     historicalPercent: number;
   }[]
@@ -363,7 +363,7 @@ function createRankingTable(ranks: {
     return (null);
   }
   return (
-    <div className={`marginTop`}>
+    <div className={`card marginTop`}>
       <RankingChart rankings={ranks}/>
     </div>
   )
@@ -494,7 +494,7 @@ export default async function FFLogsCharacterPage(
           </span>
         </div>
         {createRankingsBlock(rankings, `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`)}
-        {encounterRankings ? createRankingTable(encounterRankings.ranks) : null}
+        {encounterRankings ? createRankingChart(encounterRankings.ranks) : null}
         {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric) : null}
       </div>
     );

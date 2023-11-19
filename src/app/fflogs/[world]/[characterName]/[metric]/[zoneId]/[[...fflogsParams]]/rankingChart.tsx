@@ -135,12 +135,10 @@ export default function RankingChart(
     ];
       
     return (
-        <div>
-            <Scatter
-                options={rankingChartOptions}
-                data={rankingChartData}
-                height={"250px"}
-            />
-        </div>
+        <Scatter
+            options={rankingChartOptions}
+            data={rankingChartData}
+            height={"250px"}
+        />
     )
 }
