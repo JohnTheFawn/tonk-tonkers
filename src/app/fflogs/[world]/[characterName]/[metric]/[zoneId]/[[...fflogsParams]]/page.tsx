@@ -15,7 +15,7 @@ const JOB_TO_ICON_MAP: Record<string, string> = {
   'darkknight': '/icons/jobs/dark-knight.png',
   'paladin': '/icons/jobs/paladin.png',
   'reaper': '/icons/jobs/reaper.png',
-  'whiteMage': '/icons/jobs/white-mage.png'
+  'whitemage': '/icons/jobs/white-mage.png'
 };
 
 const ZONE_ID_ANABASEIOS = 54;
@@ -50,7 +50,13 @@ async function getAccessToken() {
   }
 }
 
-async function getRankings(serverSlug: string, characterName: string, metric: string, zoneId: number){
+async function getRankings(
+    serverSlug: string,
+    characterName: string,
+    metric: string,
+    zoneId: number,
+    encounterId: string
+  ){
   return fetch(fflogsApiUrl, {
     method: 'POST',
     headers: {
@@ -63,7 +69,14 @@ async function getRankings(serverSlug: string, characterName: string, metric: st
           character(name: "${characterName}", serverSlug: "${serverSlug}", serverRegion: "NA") {
             id,
             name,
-            zoneRankings(metric: ${metric}, zoneID: ${zoneId})
+            zoneRankings(metric: ${metric}, zoneID: ${zoneId})`
+            + (encounterId ? `
+                encounterRankings(
+                  encounterID: ${encounterId},`
+                  + (metric != 'speed' ? ` metric: ${metric}` : '') + `
+                  )`
+              : ``
+            ) + `
           }
         }
       }`})
@@ -94,23 +107,25 @@ function convertMillisecondsToFriendly(milliseconds: number){
   return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
 }
 
-function createRankingBlock(
-  rankings: {
-    encounter: {
-      id: Key;
-      name: string;
-    };
-    rankPercent: number;
-    medianPercent: number;
-    totalKills: number;
-    fastestKill: number;
-    bestSpec: string;
-    allStars: {
-      points: number;
-      rank: number;
-      total: number;
-    };
-  }[]){
+function createRankingsBlock(
+    rankings: {
+      encounter: {
+        id: Key;
+        name: string;
+      };
+      rankPercent: number;
+      medianPercent: number;
+      totalKills: number;
+      fastestKill: number;
+      bestSpec: string;
+      allStars: {
+        points: number;
+        rank: number;
+        total: number;
+      };
+    }[],
+    currentPath: string
+  ){
   return (
     <table className={`${styles.table}`}>
       <thead>
@@ -154,7 +169,15 @@ function createRankingBlock(
         {rankings.map((ranking) => 
           <tr key={ranking.encounter.id}>
             <td>
-              {ranking.encounter.name}
+              <Link
+                href={`${currentPath}/${ranking.encounter.id}`}
+              >
+                <div>
+                  <u>
+                    {ranking.encounter.name}
+                  </u>
+                </div>
+              </Link>
             </td>
             <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}>
               {friendlyPercentage(ranking.rankPercent)}%
@@ -177,6 +200,100 @@ function createRankingBlock(
             </td>
           </tr>
         )}
+      </tbody>
+    </table>
+  );
+}
+
+function createEncounterRankingsBlock(
+  rankings: {
+    historicalPercent: number;
+    todayPercent: number;
+    historicalTotalParses: number;
+    todayTotalParses: number;
+    report: {
+      code: string;
+    };
+    duration: number;
+    spec: string;
+    rDPS: number;
+    amount: number;
+    bestSpec: string;
+  }[],
+  metric: string
+){
+
+  return (
+    <table className={`${styles.table}`}>
+      <thead>
+        <tr>
+          <th>
+            <h3 title="Historical Rank">
+              Hist. Rank
+            </h3>
+          </th>
+          <th>
+            <h3 title="Historical Logs">
+              Hist. Logs
+            </h3>
+          </th>
+          <th>
+            <h3>
+              Todays Rank
+            </h3>
+          </th>
+          <th>
+            <h3>
+              Todays Logs
+            </h3>
+          </th>
+          <th>
+            <h3>
+              {(metric === 'hps' ? "Healing" : "Damage")}
+            </h3>
+          </th>
+          <th>
+            <h3>
+              Duration
+            </h3>
+          </th>
+          <th>
+            <h3>
+              Log
+            </h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+          {rankings.map((ranking) => 
+            <tr key={ranking.report.code}>
+              <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`}>
+                {friendlyPercentage(ranking.historicalPercent)}%
+                {createJobIcon(ranking.bestSpec)}
+              </td>
+              <td className={`textAlignRight`}>
+                {ranking.historicalTotalParses}
+              </td>
+              <td className={`textAlignRight ${getRankingColor(ranking.todayPercent)}`}>
+                {friendlyPercentage(ranking.todayPercent)}%
+              </td>
+              <td className={`textAlignRight`}>
+                {ranking.todayTotalParses}
+              </td>
+              <td className={`textAlignRight`}>
+                {(metric == 'hps' ? ranking.amount.toFixed(2) : null)}
+                {(metric == 'rdps' ? ranking.amount.toFixed(2) : null)}
+              </td>
+              <td className={`textAlignRight`}>
+                {convertMillisecondsToFriendly(ranking.duration)}
+              </td>
+              <td className={`textAlignRight`}>
+                <Link href={`https://www.fflogs.com/reports/yMDhRHzZ8wdQFJLb`} target="_blank">
+                  {ranking.report.code}
+                </Link>
+              </td>
+            </tr>
+          )}
       </tbody>
     </table>
   );
@@ -228,14 +345,23 @@ export default async function FFLogsCharacterPage(
       characterName: string;
       metric: string;
       zoneId: number;
+      fflogsParams: string[]
     };
   }) {
-  const res = await getRankings(params.world, decodeURIComponent(params.characterName), params.metric, params.zoneId);
+  const res = await getRankings(
+    params.world,
+    decodeURIComponent(params.characterName),
+    params.metric,
+    params.zoneId,
+    params.fflogsParams ? params.fflogsParams[0] : ''
+  );
   if(res.ok){
     const response = await res.json();
     const character = response.data.characterData.character;
     const characterId = character.id;
     const characterName = character.name;
+    const encounterRankings = character.encounterRankings;
+    //console.log(encounterRankings);
     //console.log(character);
     const zoneRankings = character.zoneRankings;
     //console.log(zoneRankings);
@@ -247,6 +373,13 @@ export default async function FFLogsCharacterPage(
     rankings.forEach((ranking: { totalKills: number; }) => {
       totalKills += ranking.totalKills;
     });
+
+    let optionalUrlPath = '';
+    if(params.fflogsParams){
+      params.fflogsParams.forEach(fflogsParam => {
+        optionalUrlPath += `/${fflogsParam}`;
+      });
+    }
 
 
     return (
@@ -282,19 +415,19 @@ export default async function FFLogsCharacterPage(
           <div className={`marginBottom`}>
             <Link
               className={`button buttonRed marginRight ` + (params.metric == 'rdps' ? `buttonHighlighted` : `` )}
-              href={`/fflogs/${params.world}/${params.characterName}/rdps/${params.zoneId}`}
+              href={`/fflogs/${params.world}/${params.characterName}/rdps/${params.zoneId}${optionalUrlPath}`}
             >
               Damage
             </Link>
             <Link
               className={`button buttonGreen marginRight ` + (params.metric == 'hps' ? `buttonHighlighted` : `` )}
-              href={`/fflogs/${params.world}/${params.characterName}/hps/${params.zoneId}`}
+              href={`/fflogs/${params.world}/${params.characterName}/hps/${params.zoneId}${optionalUrlPath}`}
             >
               Healing
             </Link>
             <Link
               className={`button ` + (params.metric == 'playerspeed' ? `buttonHighlighted` : `` )}
-              href={`/fflogs/${params.world}/${params.characterName}/playerspeed/${params.zoneId}`}
+              href={`/fflogs/${params.world}/${params.characterName}/playerspeed/${params.zoneId}${optionalUrlPath}`}
             >
               Speed
             </Link>
@@ -329,7 +462,8 @@ export default async function FFLogsCharacterPage(
             </h2>
           </span>
         </div>
-        {createRankingBlock(rankings)}
+        {createRankingsBlock(rankings, `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`)}
+        {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric): null}
       </div>
     );
   }

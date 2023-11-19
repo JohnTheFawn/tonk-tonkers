@@ -10,7 +10,7 @@ export default function Home() {
       </Link>
       <Link className={"cardLink"} href="/fflogs/Coeurl/Tonk Tonkers/rdps/54">
         <p>
-          FF Logs | <code className={"code"}>src/app/fflogs/[world]/[characterName]/[metric]/[zoneId]page.tsx</code> 
+          FF Logs | <code className={"code"}>src/app/fflogs/[world]/[characterName]/[metric]/[zoneId]/[[...fflogsParams]]page.tsx</code> 
         </p>
       </Link>
       <Link className={"cardLink"} href="/ultimates">

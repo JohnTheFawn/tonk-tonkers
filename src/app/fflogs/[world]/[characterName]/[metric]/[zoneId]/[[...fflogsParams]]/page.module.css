@@ -28,10 +28,6 @@
     background-color: rgba(238, 240, 241, 0.1)
 }
 
-.table tbody > tr {
-    cursor: pointer;
-}
-
 .performanceWrapper{
     display: flex;
     flex-direction: row;
