@@ -110,7 +110,7 @@ function generateAuthentication(){
 }
 
 function friendlyPercentage(raw: number){
-  return raw.toFixed(1);
+  return Math.floor(raw);
 }
 
 function convertMillisecondsToFriendly(milliseconds: number){
