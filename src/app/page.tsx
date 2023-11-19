@@ -8,9 +8,9 @@ export default function Home() {
           Tonk Tonkers | <code className={"code"}>src/app/page.tsx</code>
         </p>
       </Link>
-      <Link className={"cardLink"} href="/fflogs">
+      <Link className={"cardLink"} href="/fflogs/Coeurl/Tonk Tonkers">
         <p>
-          FF Logs | <code className={"code"}>src/app/fflogs/page.tsx</code> 
+          FF Logs | <code className={"code"}>src/app/fflogs/[world]/[characterName]/page.tsx</code> 
         </p>
       </Link>
       <Link className={"cardLink"} href="/ultimates">

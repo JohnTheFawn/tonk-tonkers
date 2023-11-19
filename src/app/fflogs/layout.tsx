@@ -1,4 +1,4 @@
-import styles from './page.module.css'
+import styles from './layout.module.css'
 
 export default function FFLogsLayout({
     children,

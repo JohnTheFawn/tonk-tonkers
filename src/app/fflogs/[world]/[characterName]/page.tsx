@@ -213,8 +213,8 @@ function createJobIcon(jobName: string){
   );
 }
 
-export default async function Home() {
-  const res = await getRankings('Coeurl', 'Tonk Tonkers');
+export default async function Home({params}: {params: {world: string; characterName: string}}) {
+  const res = await getRankings(params.world, decodeURIComponent(params.characterName));
   if(res.ok){
     const response = await res.json();
     const character = response.data.characterData.character;
@@ -222,8 +222,8 @@ export default async function Home() {
     const zoneRankings = character.zoneRankings;
     const rankings = zoneRankings.rankings;
     const allStars = zoneRankings.allStars;
-    console.log(rankings);
-    console.log(allStars);
+    //console.log(rankings);
+    //console.log(allStars);
     let totalKills = 0;
     rankings.forEach((ranking: { totalKills: number; }) => {
       totalKills += ranking.totalKills;
