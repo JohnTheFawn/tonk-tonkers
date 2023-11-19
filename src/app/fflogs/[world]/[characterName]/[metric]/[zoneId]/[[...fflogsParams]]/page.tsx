@@ -2,6 +2,7 @@ import { Key } from 'react';
 import styles from './page.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import RankingChart from './rankingChart'
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -218,6 +219,7 @@ function createRankingsBlock(
   );
 }
 
+
 function createEncounterRankingsBlock(
   rankings: {
     historicalPercent: number;
@@ -352,6 +354,21 @@ function createJobIcon(jobName: string){
   );
 }
 
+function createRankingTable(ranks: {
+    startTime: number;
+    historicalPercent: number;
+  }[]
+){
+  if(!ranks){
+    return (null);
+  }
+  return (
+    <div className={`marginTop`}>
+      <RankingChart rankings={ranks}/>
+    </div>
+  )
+}
+
 export default async function FFLogsCharacterPage(
   {params}:
   {
@@ -395,7 +412,6 @@ export default async function FFLogsCharacterPage(
         optionalUrlPath += `/${fflogsParam}`;
       });
     }
-
 
     return (
       <div className={`card ${styles.fflogsWrapper}`}>
@@ -478,7 +494,8 @@ export default async function FFLogsCharacterPage(
           </span>
         </div>
         {createRankingsBlock(rankings, `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`)}
-        {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric): null}
+        {encounterRankings ? createRankingTable(encounterRankings.ranks) : null}
+        {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric) : null}
       </div>
     );
   }
