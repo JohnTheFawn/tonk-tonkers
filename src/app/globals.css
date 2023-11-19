@@ -206,6 +206,10 @@ a {
   margin-bottom: .8em;
 }
 
+.marginTop{
+  margin-top: .8em;
+}
+
 .verticalAlignMiddle {
     vertical-align: middle;
 }

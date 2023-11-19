@@ -237,7 +237,7 @@ function createEncounterRankingsBlock(
 ){
 
   return (
-    <table className={`${styles.table}`}>
+    <table className={`${styles.table} marginTop`}>
       <thead>
         <tr>
           <th>
