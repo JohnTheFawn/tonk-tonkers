@@ -1,6 +1,6 @@
 'use client'
  
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Chart, ArcElement, Tooltip } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import 'chartjs-adapter-moment'
 
@@ -66,13 +66,14 @@ function getJobColor(job: string){
     else if(parsedJob == 'warrior'){
         return 'rgba(255, 70, 65, .7)';
     }
+    else if(parsedJob == 'whitemage'){
+        return 'rgba(255, 255, 255, .7)';
+    }
     return 'rgba(255, 255, 255, .25)';
 }
  
 export default function JobPieChart(
     { rankings }: {rankings: {
-        historicalPercent: number;
-        startTime: number;
         bestSpec: string;
     }[]
 }) {
@@ -80,14 +81,18 @@ export default function JobPieChart(
     // Register the ChartJS specific elements we will use
     Chart.register(
         ArcElement,
-        Tooltip,
-        Legend
+        Tooltip
     );
 
     // Configuration options for the chart
     const rankingChartOptions = {
         clip: false as const,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
     };
 
     // Build up our datasets
@@ -138,6 +143,7 @@ export default function JobPieChart(
       
     return (
         <Pie
+            key={`jobPieChart`}
             options={rankingChartOptions}
             data={rankingChartData}
             height={"250px"}

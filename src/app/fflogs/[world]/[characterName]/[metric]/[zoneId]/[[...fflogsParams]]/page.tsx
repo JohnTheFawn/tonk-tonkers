@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import RankingChart from './rankingChart'
 import JobPieChart from './jobPieChart'
+import RankingPieChart from './rankingPieChart'
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -386,6 +387,7 @@ function createRankingChart(
   ranks: {
     startTime: number;
     historicalPercent: number;
+    bestSpec: string;
     }[]
   ){
   if(!ranks){
@@ -400,16 +402,27 @@ function createRankingChart(
 
 function createPieCharts(
   ranks: {
-    startTime: number;
     historicalPercent: number;
+    bestSpec: string;
   }[]
   ){
   if(!ranks){
     return (null);
   }
   return (
-    <div className={`card marginTop`}>
-      <JobPieChart rankings={ranks}/>
+    <div className={`${styles.chartWrapper} marginTop`}>
+      <div className={`card`}>
+        <h2 className={`textAlignCenter ${styles.titleBorder}`}>Job Breakdown</h2>
+        <div>
+          <JobPieChart rankings={ranks}/>
+        </div>
+      </div>
+      <div className={`card`}>
+        <h2 className={`textAlignCenter ${styles.titleBorder}`}>Ranking Breakdown</h2>
+        <div>
+          <RankingPieChart rankings={ranks}/>
+        </div>
+      </div>
     </div>
   )
 }

@@ -53,6 +53,18 @@
     margin-bottom: .5rem;
 }
 
+.chartWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.titleBorder{
+    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+}
+
 .grey {
     color: #666666;
 }
