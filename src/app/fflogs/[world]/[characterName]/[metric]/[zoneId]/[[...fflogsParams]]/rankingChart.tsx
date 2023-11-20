@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Chart, LinearScale, PointElement, TimeSeriesScale } from 'chart.js'
 import { Scatter } from 'react-chartjs-2'
 import 'chartjs-adapter-moment'
+import { ChartJsDataSet } from './interfaces'
  
 export default function RankingChart(
     { rankings }: {rankings: {
@@ -36,10 +37,7 @@ export default function RankingChart(
         label: string;
         backgroundColor: string;
         datasets: {
-            data: {
-                x: number;
-                y: number;
-            }[],
+            data: ChartJsDataSet[],
             backgroundColor: string;
         }[]
     } = {
@@ -48,34 +46,13 @@ export default function RankingChart(
         datasets: []
     };
 
-    const greyRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
-    const greenRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
-    const blueRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
-    const purpleRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
-    const orangeRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
-    const pinkRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
-    const goldRankingDataset: {
-        x: number;
-        y: number;
-    }[] = [];
+    const greyRankingDataset: ChartJsDataSet[] = [];
+    const greenRankingDataset: ChartJsDataSet[] = [];
+    const blueRankingDataset: ChartJsDataSet[] = [];
+    const purpleRankingDataset: ChartJsDataSet[] = [];
+    const orangeRankingDataset: ChartJsDataSet[] = [];
+    const pinkRankingDataset: ChartJsDataSet[] = [];
+    const goldRankingDataset: ChartJsDataSet[] = [];
 
     const rankingLabels = [];
     rankings.forEach(ranking => {
