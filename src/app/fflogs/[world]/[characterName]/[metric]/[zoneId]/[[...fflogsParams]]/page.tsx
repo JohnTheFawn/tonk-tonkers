@@ -296,7 +296,7 @@ function createEncounterRankingsBlock(
               <td>
                 {convertStartTimeToFriendly(ranking.startTime)}
               </td>
-              <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`}>
+              <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`} title={ranking.bestSpec.replace(/([A-Z])/g, ' $1').trim()}>
                 {friendlyPercentage(ranking.historicalPercent)}%
                 {createJobIcon(ranking.bestSpec)}
               </td>
