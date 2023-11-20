@@ -45,6 +45,15 @@ export default function P2Page() {
                     <Link href="/ultimates/top/p2-conga.png" target="_blank">
                         <Image src={p2Conga} width={250} height={250} alt="P2 Conga"/>
                     </Link>
+                    <br/>
+                    <br/>
+                    <Link href="/ultimates/top/p2-conga-ingame.png" target="_blank">
+                        <h3>
+                            <u>
+                                Ingame Conga
+                            </u>
+                        </h3>
+                    </Link>
                 </div>
                 
                 <br/>
@@ -54,22 +63,46 @@ export default function P2Page() {
                 <p>- Mid Glitch: both sides line up in the same BPOG (From North to South: Blue, Pink, Orange, Green) order on each side. Line up with the outside of the relative intercardinal markers (or roughly two tick marks towards the eye laser if looking at the edge of the arena). If you stand too close to your partner, both of you get a vulnerability stack and die.</p>
                 <p>- Remote Glitch: the right side will adjust their line up to GPOB (From North to South: Green, Pink, Orange, Blue. Green and Blue Swap). All the way to the wall. Square and Circle should be 3-4 tick marks away from the middle so they don&#39;t overlap. X and Triangle still stand infront of the second tick mark.</p>
                 <p>- Spread Damage: 29,000-33,000</p>
-                <div className={"card"}>
-                    <div className={"textAlignCenter"}>
-                        Mid Glitch (BPOG-BPOG)
-                        <br/>
-                        <Link href="/ultimates/top/p2-bpog-bpog.png" target="_blank">
-                            <Image src={p2bpogbpog} width={250} height={250} alt="P2 Mid Glitch tethers and spread"/>
-                        </Link>
-                    </div>
+                <div className={`card textAlignCenter`}>
+                    Mid Glitch (BPOG-BPOG)
                     <br/>
-                    <div className={"textAlignCenter"}>
-                        Remote Glitch (BPOG-GPOB)
-                        <br/>
-                        <Link href="/ultimates/top/p2-bpog-gpob.png" target="_blank">
-                            <Image src={p2bpoggpob} width={250} height={250}  alt="P2 Remote Glitch tethers and spread"/>
-                        </Link>
-                    </div>
+                    <Link href="/ultimates/top/p2-bpog-bpog.png" target="_blank">
+                        <Image src={p2bpogbpog} width={250} height={250} alt="P2 Mid Glitch tethers and spread"/>
+                    </Link>
+                    <br/>
+                    <br/>
+                    Remote Glitch (BPOG-GPOB)
+                    <br/>
+                    <Link href="/ultimates/top/p2-bpog-gpob.png" target="_blank">
+                        <Image src={p2bpoggpob} width={250} height={250}  alt="P2 Remote Glitch tethers and spread"/>
+                    </Link>
+                    <br/>
+                    <br/>
+                    <Link href="/ultimates/top/p2-laser-width.png" target="_blank">
+                        <h3>
+                            <u>
+                                Laser Width
+                            </u>
+                        </h3>
+                    </Link>
+                    <br/>
+                    <br/>
+                    <Link href="/ultimates/top/p2-two-ticks.png" target="_blank">
+                        <h3>
+                            <u>
+                                Ingame X/Triangle Positioning (2 tick marks)
+                            </u>
+                        </h3>
+                    </Link>
+                    <br/>
+                    <br/>
+                    <Link href="/ultimates/top/p2-three-ticks.png" target="_blank">
+                        <h3>
+                            <u>
+                                Ingame Far Circle/Square Positioning (3 tick marks)
+                            </u>
+                        </h3>
+                    </Link>
                 </div>
                 <br/>
 
