@@ -3,6 +3,7 @@ import styles from './page.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import RankingChart from './rankingChart'
+import JobPieChart from './jobPieChart'
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -381,17 +382,34 @@ function metricToFriendly(metric: string){
   return '';
 }
 
-function createRankingChart(ranks: {
+function createRankingChart(
+  ranks: {
     startTime: number;
     historicalPercent: number;
-  }[]
-){
+    }[]
+  ){
   if(!ranks){
     return (null);
   }
   return (
     <div className={`card marginTop`}>
       <RankingChart rankings={ranks}/>
+    </div>
+  )
+}
+
+function createPieCharts(
+  ranks: {
+    startTime: number;
+    historicalPercent: number;
+  }[]
+  ){
+  if(!ranks){
+    return (null);
+  }
+  return (
+    <div className={`card marginTop`}>
+      <JobPieChart rankings={ranks}/>
     </div>
   )
 }
@@ -541,6 +559,7 @@ export default async function FFLogsCharacterPage(
         {createRankingsBlock(rankings, `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`)}
         {encounterRankings ? <h2 className={`textAlignCenter marginTop`}>{encounterName} ({metricToFriendly(params.metric)})</h2> : null}
         {encounterRankings ? createRankingChart(encounterRankings.ranks) : null}
+        {encounterRankings ? createPieCharts(encounterRankings.ranks) : null}
         {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric) : null}
       </div>
     );

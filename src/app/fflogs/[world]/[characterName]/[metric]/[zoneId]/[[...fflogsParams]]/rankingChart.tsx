@@ -1,7 +1,7 @@
 'use client'
  
 import { useState } from 'react'
-import { Chart, LinearScale, PointElement, TimeSeriesScale } from 'chart.js'
+import { Chart, LinearScale, PointElement, TimeSeriesScale, Tooltip, Legend } from 'chart.js'
 import { Scatter } from 'react-chartjs-2'
 import 'chartjs-adapter-moment'
 import { ChartJsDataSet } from './interfaces'
@@ -12,15 +12,25 @@ export default function RankingChart(
         startTime: number
     }[]
 }) {
-    Chart.register(LinearScale, PointElement, TimeSeriesScale);
+    Chart.register(
+        LinearScale,
+        PointElement,
+        TimeSeriesScale,
+        Tooltip,
+        Legend
+    );
     const rankingChartOptions = {
         clip: false as const,
         maintainAspectRatio: false,
+        plugins: {
+                legend: {
+                display: false
+            },
+        },
         scales: {
             x: {
                 type: 'timeseries' as const,
                 time: {
-                    round: 'day' as const,
                     unit: 'day' as const
                 }
             },
