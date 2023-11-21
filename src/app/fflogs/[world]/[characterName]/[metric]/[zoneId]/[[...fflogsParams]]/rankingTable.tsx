@@ -1,4 +1,3 @@
-import { Key } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
 import {
@@ -8,105 +7,114 @@ import {
 } from './utilityFunctions';
 import JobIcon from './jobIcon';
 
-export default function RankingTable(
+function convertStartTimeToFriendly(startTime: number){
+  const startTimeDate = new Date(startTime);
+  return (startTimeDate.getMonth() + 1) + '/' + startTimeDate.getDate() + '/' + startTimeDate.getFullYear();
+}
+
+export default function AllStarRankTable(
         {
             rankings,
-            currentPath
+            metric
         }: {
             rankings: {
-                encounter: {
-                    id: Key;
-                    name: string;
+                historicalPercent: number;
+                todayPercent: number;
+                historicalTotalParses: number;
+                todayTotalParses: number;
+                report: {
+                  code: string;
                 };
-                rankPercent: number;
-                medianPercent: number;
-                totalKills: number;
-                fastestKill: number;
+                duration: number;
+                spec: string;
+                rDPS: number;
+                amount: number;
                 bestSpec: string;
-                allStars: {
-                    points: number;
-                    rank: number;
-                    total: number;
-                };
+                startTime: number;
             }[];
-            currentPath: string;
+            metric: string
         }
     ){
     return (
-        <table className={`${styles.table}`}>
+        <table className={`${styles.table} marginTop`}>
             <thead>
-                <tr>
-                    <th>
-                    <h3>Encounter</h3>
-                    </th>
-                    <th style={{width: 90}}>
-                    <h3>
-                        Best
+            <tr>
+                <th>
+                    <h3 className={`textAlignLeft`}>
+                        Date
                     </h3>
-                    </th>
-                    <th style={{width: 90}}>
-                    <h3>
-                        Median
+                </th>
+                <th>
+                    <h3 title="Historical Rank">
+                        Hist. Rank
                     </h3>
-                    </th>
-                    <th style={{width: 90}}>
-                    <h3>
-                        Kills
+                </th>
+                <th>
+                    <h3 title="Historical Logs">
+                        Hist. Logs
                     </h3>
-                    </th>
-                    <th style={{width: 90}}>
+                </th>
+                <th>
                     <h3>
-                        Fastest
+                        Todays Rank
                     </h3>
-                    </th>
-                    <th style={{width: 90}}>
+                </th>
+                <th>
                     <h3>
-                        Points
+                        Todays Logs
                     </h3>
-                    </th>
-                    <th style={{width: 90}}>
+                </th>
+                <th>
                     <h3>
-                        Rank
+                        {(metric === 'hps' ? "Healing" : "Damage")}
                     </h3>
-                    </th>
-                </tr>
+                </th>
+                <th>
+                    <h3>
+                        Duration
+                    </h3>
+                </th>
+                <th>
+                    <h3>
+                        Log
+                    </h3>
+                </th>
+            </tr>
             </thead>
             <tbody>
                 {rankings.map((ranking) => 
-                    <tr key={ranking.encounter.id}>
+                <tr key={ranking.startTime}>
                     <td>
-                        <Link
-                        href={`${currentPath}/${ranking.encounter.id}`}
-                        >
-                        <div>
+                        {convertStartTimeToFriendly(ranking.startTime)}
+                    </td>
+                    <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`} title={ranking.bestSpec.replace(/([A-Z])/g, ' $1').trim()}>
+                        {friendlyPercentage(ranking.historicalPercent)}%
+                        <JobIcon jobName={ranking.bestSpec}/>
+                    </td>
+                    <td className={`textAlignRight`}>
+                        {ranking.historicalTotalParses}
+                    </td>
+                    <td className={`textAlignRight ${getRankingColor(ranking.todayPercent)}`}>
+                        {friendlyPercentage(ranking.todayPercent)}%
+                    </td>
+                    <td className={`textAlignRight`}>
+                        {ranking.todayTotalParses}
+                    </td>
+                    <td className={`textAlignRight`}>
+                        {(metric == 'hps' ? ranking.amount.toFixed(2) : null)}
+                        {(metric == 'rdps' ? ranking.amount.toFixed(2) : null)}
+                    </td>
+                    <td className={`textAlignRight`}>
+                        {convertMillisecondsToFriendly(ranking.duration)}
+                    </td>
+                    <td className={`textAlignRight`}>
+                        <Link href={`https://www.fflogs.com/reports/${ranking.report.code}`} target="_blank">
                             <u>
-                            {ranking.encounter.name}
+                            {ranking.report.code}
                             </u>
-                        </div>
                         </Link>
                     </td>
-                    <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}>
-                        {friendlyPercentage(ranking.rankPercent)}%
-                    </td>
-                    <td className={`textAlignRight ${getRankingColor(ranking.medianPercent)}`}>
-                        {friendlyPercentage(ranking.medianPercent)}%
-                    </td>
-                    <td className={`textAlignRight`}>
-                        {ranking.totalKills}
-                    </td>
-                    <td className={`textAlignRight`}>
-                        {convertMillisecondsToFriendly(ranking.fastestKill)}
-                    </td>
-                    <td className={`textAlignRight`}>
-                        {ranking.allStars ? ranking.allStars.points : null}
-                    </td>
-                    <td
-                        className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}
-                        title={ranking.allStars ? `Rank ${ranking.allStars.rank} out of ${ranking.allStars.total}` : ``}>
-                        {ranking.allStars ? ranking.allStars.rank : null}
-                        {ranking.allStars ? <JobIcon jobName={ranking.bestSpec}/> : null}
-                    </td>
-                    </tr>
+                </tr>
                 )}
             </tbody>
         </table>
