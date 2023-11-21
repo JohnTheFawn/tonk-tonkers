@@ -6,6 +6,7 @@ import JobPieChart from './jobPieChart'
 import RankingPieChart from './rankingPieChart'
 import AllStarRankTable from './allStarRankTable';
 import RankingTable from './rankingTable';
+import { friendlyPercentage } from './utilityFunctions';
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -112,10 +113,6 @@ function generateAuthentication(){
       'grant_type': 'client_credentials'
     })
   });
-}
-
-function friendlyPercentage(raw: number){
-  return Math.floor(raw);
 }
 
 function getRankingColor(ranking: number){
