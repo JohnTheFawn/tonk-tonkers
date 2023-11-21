@@ -1,8 +1,7 @@
-import { Key } from 'react';
-import styles from './page.module.css'
-import Link from 'next/link'
-import RankingChart from './rankingChart'
-import JobPieChart from './jobPieChart'
+import styles from './page.module.css';
+import Link from 'next/link';
+import RankingChart from './rankingChart';
+import JobPieChart from './jobPieChart';
 import RankingPieChart from './rankingPieChart'
 import ZoneRankingTable from './zoneRankingTable';
 import RankingTable from './rankingTable';
@@ -151,35 +150,43 @@ export default async function FFLogsCharacterPage(
     const character = response.data.characterData.character;
     const characterId = character.id;
     const characterName = character.name;
-    let zoneRankings = character.zoneRankings;
     let encounterRankings: FFLogsEncounterRanking[] = character.encounterRankings ? character.encounterRankings.ranks : null;
+    let zoneRankings: FFLogsZoneRanking[] = character.zoneRankings ? character.zoneRankings.rankings : [];
 
     let encounterName = '';
     if(params.fflogsParams){
       const fflogsParams = {
         encounterId: params.fflogsParams[0],
-        jobName: params.fflogsParams[1]
+        jobName: (params.fflogsParams[1] || '').toLowerCase().replace(/ /g, '')
       };
 
-      for(let i = 0; i < zoneRankings.rankings.length; i++){
-        const tempRanking = zoneRankings.rankings[i];
+      // Try to find the Encounter Name from one of the FFLogsEncounterRankings
+      for(let i = 0; i < zoneRankings.length; i++){
+        const tempRanking = zoneRankings[i];
         if(tempRanking.encounter.id == fflogsParams.encounterId){
           encounterName = tempRanking.encounter.name;
           break;
         }
+      }
+
+      // Filter encounterRanking and rankings to the requested job
+      if(fflogsParams.jobName){
+        encounterRankings = encounterRankings.filter(encounterRanking => 
+          encounterRanking.spec.toLowerCase() == fflogsParams.jobName
+        );
+        //console.log(encounterRankings);
       }
     }
 
     //console.log(encounterRankings);
     //console.log(character);
     //console.log(zoneRankings);
-    const rankings: FFLogsZoneRanking[] = zoneRankings.rankings;
 
-    const allStars = zoneRankings.allStars;
+    const allStars = character.zoneRankings ? character.zoneRankings.allStars : null;
     //console.log(rankings);
     //console.log(allStars);
     let totalKills = 0;
-    rankings.forEach((ranking: { totalKills: number; }) => {
+    zoneRankings.forEach((ranking: { totalKills: number; }) => {
       totalKills += ranking.totalKills;
     });
 
@@ -189,6 +196,7 @@ export default async function FFLogsCharacterPage(
         optionalUrlPath += `/${fflogsParam}`;
       });
     }
+    const currentPath = `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`;
 
     return (
       <div className={`card ${styles.fflogsWrapper}`}>
@@ -255,16 +263,16 @@ export default async function FFLogsCharacterPage(
             <h2>
               Best Avg.
             </h2>
-            <h2 className={`${getRankingColor(zoneRankings.bestPerformanceAverage)}`}>
-              {friendlyPercentage(zoneRankings.bestPerformanceAverage)}%
+            <h2 className={`${getRankingColor(character.zoneRankings.bestPerformanceAverage)}`}>
+              {friendlyPercentage(character.zoneRankings.bestPerformanceAverage)}%
             </h2>
           </span>
           <span className={`card ${styles.performanceBlock}`}>
             <h2>
               Median Avg.
             </h2>
-            <h2 className={`${getRankingColor(zoneRankings.medianPerformanceAverage)}`}>
-              {friendlyPercentage(zoneRankings.medianPerformanceAverage)}%
+            <h2 className={`${getRankingColor(character.zoneRankings.medianPerformanceAverage)}`}>
+              {friendlyPercentage(character.zoneRankings.medianPerformanceAverage)}%
             </h2>
           </span>
           <span className={`card ${styles.performanceBlock}`}>
@@ -277,24 +285,34 @@ export default async function FFLogsCharacterPage(
           </span>
         </div>
         <ZoneRankingTable
-          rankings={rankings}
-          currentPath={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`}
+          rankings={zoneRankings}
+          currentPath={currentPath}
         />
-        {encounterRankings ?
-            <h2 className={`textAlignCenter marginTop`}>
-              {encounterName} ({metricToFriendly(params.metric)})
-            </h2>
+        {encounterName ? 
+          <h2 className={`textAlignCenter marginTop`}>
+            {encounterName} ({metricToFriendly(params.metric)})
+          </h2>
+        : null}
+        {params.fflogsParams[1] ?
+          <h2 className={`textAlignCenter`}>
+            {params.fflogsParams[1]}
+          </h2> 
         : null}
         {encounterRankings ? 
           <div className={`card marginTop`}>
-            <RankingChart rankings={encounterRankings}/>
+            <RankingChart
+              rankings={encounterRankings}
+            />
           </div>
         : null}
         {encounterRankings ?
           createPieCharts(encounterRankings)
         : null}
         {encounterRankings ?
-          <RankingTable rankings={encounterRankings} metric={params.metric} />
+          <RankingTable
+            rankings={encounterRankings} metric={params.metric}
+            currentPath={`${currentPath}/${params.fflogsParams[0]}`}
+          />
         : null}
       </div>
     );

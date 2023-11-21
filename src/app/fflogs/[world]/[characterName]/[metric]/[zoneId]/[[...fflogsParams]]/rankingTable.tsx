@@ -16,10 +16,12 @@ function convertStartTimeToFriendly(startTime: number){
 export default function RankingTable(
         {
             rankings,
-            metric
+            metric,
+            currentPath
         }: {
             rankings: FFLogsEncounterRanking[];
-            metric: string
+            metric: string;
+            currentPath: string
         }
     ){
     return (
@@ -76,7 +78,7 @@ export default function RankingTable(
                     </td>
                     <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`} title={ranking.bestSpec.replace(/([A-Z])/g, ' $1').trim()}>
                         {friendlyPercentage(ranking.historicalPercent)}%
-                        <JobIcon jobName={ranking.bestSpec}/>
+                        <Link href={`${currentPath}/${ranking.bestSpec}`}><JobIcon jobName={ranking.bestSpec}/></Link>
                     </td>
                     <td className={`textAlignRight`}>
                         {ranking.historicalTotalParses}

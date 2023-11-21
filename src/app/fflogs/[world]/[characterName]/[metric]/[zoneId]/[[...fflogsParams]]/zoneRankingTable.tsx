@@ -23,37 +23,37 @@ export default function ZoneRankingTable(
             <thead>
                 <tr>
                     <th>
-                    <h3>Encounter</h3>
+                        <h3>Encounter</h3>
                     </th>
                     <th style={{width: 90}}>
-                    <h3>
-                        Best
-                    </h3>
+                        <h3>
+                            Best
+                        </h3>
                     </th>
                     <th style={{width: 90}}>
-                    <h3>
-                        Median
-                    </h3>
+                        <h3>
+                            Median
+                        </h3>
                     </th>
                     <th style={{width: 90}}>
-                    <h3>
-                        Kills
-                    </h3>
+                        <h3>
+                            Kills
+                        </h3>
                     </th>
                     <th style={{width: 90}}>
-                    <h3>
-                        Fastest
-                    </h3>
+                        <h3>
+                            Fastest
+                        </h3>
                     </th>
                     <th style={{width: 90}}>
-                    <h3>
-                        Points
-                    </h3>
+                        <h3>
+                            Points
+                        </h3>
                     </th>
                     <th style={{width: 90}}>
-                    <h3>
-                        Rank
-                    </h3>
+                        <h3>
+                            Rank
+                        </h3>
                     </th>
                 </tr>
             </thead>

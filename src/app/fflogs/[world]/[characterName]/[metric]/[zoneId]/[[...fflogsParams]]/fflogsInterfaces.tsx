@@ -10,6 +10,7 @@ export interface FFLogsZoneRanking {
     totalKills: number;
     fastestKill: number;
     bestSpec: string;
+    spec: string;
     allStars: {
         points: number;
         rank: number;
