@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 const JOB_TO_ICON_MAP: Record<string, string> = {
     'astrologian': '/icons/jobs/astrologian.png',
+    'bard': '/icons/jobs/bard.png',
     'blackmage': '/icons/jobs/black-mage.png',
     'bluemage': '/icons/jobs/blue-mage.png',
     'dancer': '/icons/jobs/dancer.png',
