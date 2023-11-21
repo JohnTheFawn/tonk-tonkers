@@ -6,6 +6,7 @@ import {
     convertMillisecondsToFriendly
 } from './utilityFunctions';
 import JobIcon from './jobIcon';
+import { FFLogsEncounterRanking } from './fflogsInterfaces';
 
 function convertStartTimeToFriendly(startTime: number){
   const startTimeDate = new Date(startTime);
@@ -17,21 +18,7 @@ export default function RankingTable(
             rankings,
             metric
         }: {
-            rankings: {
-                historicalPercent: number;
-                todayPercent: number;
-                historicalTotalParses: number;
-                todayTotalParses: number;
-                report: {
-                  code: string;
-                };
-                duration: number;
-                spec: string;
-                rDPS: number;
-                amount: number;
-                bestSpec: string;
-                startTime: number;
-            }[];
+            rankings: FFLogsEncounterRanking[];
             metric: string
         }
     ){

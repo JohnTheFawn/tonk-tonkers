@@ -11,7 +11,10 @@ import {
   getRankingColor,
   metricToFriendly
 } from './utilityFunctions';
-import { FFLogsAllStarRanking } from './fflogsInterfaces';
+import {
+  FFLogsAllStarRanking,
+  FFLogsEncounterRanking
+} from './fflogsInterfaces';
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -149,7 +152,7 @@ export default async function FFLogsCharacterPage(
     const characterId = character.id;
     const characterName = character.name;
     const zoneRankings = character.zoneRankings;
-    const encounterRankings = character.encounterRankings;
+    const encounterRankings: FFLogsEncounterRanking[] = character.encounterRankings ? character.encounterRankings.ranks : null;
 
     let encounterName = '';
     if(params.fflogsParams){
@@ -279,14 +282,14 @@ export default async function FFLogsCharacterPage(
         : null}
         {encounterRankings ? 
           <div className={`card marginTop`}>
-            <RankingChart rankings={encounterRankings.ranks}/>
+            <RankingChart rankings={encounterRankings}/>
           </div>
         : null}
         {encounterRankings ?
-          createPieCharts(encounterRankings.ranks)
+          createPieCharts(encounterRankings)
         : null}
         {encounterRankings ?
-          <RankingTable rankings={encounterRankings.ranks} metric={params.metric} />
+          <RankingTable rankings={encounterRankings} metric={params.metric} />
         : null}
       </div>
     );

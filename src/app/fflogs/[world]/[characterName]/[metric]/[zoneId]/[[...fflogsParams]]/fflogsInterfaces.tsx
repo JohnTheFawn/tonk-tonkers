@@ -16,3 +16,19 @@ export interface FFLogsAllStarRanking {
         total: number;
     };
 };
+
+export interface FFLogsEncounterRanking {
+    historicalPercent: number;
+    todayPercent: number;
+    historicalTotalParses: number;
+    todayTotalParses: number;
+    report: {
+      code: string;
+    };
+    duration: number;
+    spec: string;
+    rDPS: number;
+    amount: number;
+    bestSpec: string;
+    startTime: number;
+};
