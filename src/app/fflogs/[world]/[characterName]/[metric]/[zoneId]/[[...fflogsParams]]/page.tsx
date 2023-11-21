@@ -271,23 +271,6 @@ function metricToFriendly(metric: string){
   return '';
 }
 
-function createRankingChart(
-  ranks: {
-    startTime: number;
-    historicalPercent: number;
-    bestSpec: string;
-    }[]
-  ){
-  if(!ranks){
-    return (null);
-  }
-  return (
-    <div className={`card marginTop`}>
-      <RankingChart rankings={ranks}/>
-    </div>
-  )
-}
-
 function createPieCharts(
   ranks: {
     historicalPercent: number;
@@ -478,13 +461,21 @@ export default async function FFLogsCharacterPage(
           currentPath={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`}
         />
         {encounterRankings ?
-          <h2 className={`textAlignCenter marginTop`}>
-            {encounterName} ({metricToFriendly(params.metric)})
-          </h2>
+            <h2 className={`textAlignCenter marginTop`}>
+              {encounterName} ({metricToFriendly(params.metric)})
+            </h2>
         : null}
-        {encounterRankings ? createRankingChart(encounterRankings.ranks) : null}
-        {encounterRankings ? createPieCharts(encounterRankings.ranks) : null}
-        {encounterRankings ? createEncounterRankingsBlock(encounterRankings.ranks, params.metric) : null}
+        {encounterRankings ? 
+          <div className={`card marginTop`}>
+            <RankingChart rankings={encounterRankings.ranks}/>
+          </div>
+        : null}
+        {encounterRankings ?
+          createPieCharts(encounterRankings.ranks)
+        : null}
+        {encounterRankings ?
+          createEncounterRankingsBlock(encounterRankings.ranks, params.metric)
+        : null}
       </div>
     );
   }
