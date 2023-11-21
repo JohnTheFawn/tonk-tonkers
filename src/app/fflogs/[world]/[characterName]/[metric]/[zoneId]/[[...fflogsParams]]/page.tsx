@@ -101,10 +101,11 @@ function generateAuthentication(){
 }
 
 function createPieCharts(
-  ranks: {
-    historicalPercent: number;
-    bestSpec: string;
-  }[]
+    ranks: {
+      historicalPercent: number;
+      bestSpec: string;
+    }[],
+    currentPath: string
   ){
   if(!ranks){
     return (null);
@@ -114,7 +115,7 @@ function createPieCharts(
       <div className={`card`}>
         <h2 className={`textAlignCenter ${styles.titleBorder}`}>Job Breakdown</h2>
         <div>
-          <JobPieChart rankings={ranks}/>
+          <JobPieChart rankings={ranks} currentPath={currentPath}/>
         </div>
       </div>
       <div className={`card`}>
@@ -154,10 +155,11 @@ export default async function FFLogsCharacterPage(
     let zoneRankings: FFLogsZoneRanking[] = character.zoneRankings ? character.zoneRankings.rankings : [];
 
     let encounterName = '';
+    let friendlySelectedJobName: string | null = null;
     if(params.fflogsParams){
       const fflogsParams = {
         encounterId: params.fflogsParams[0],
-        jobName: (params.fflogsParams[1] || '').toLowerCase().replace(/ /g, '')
+        jobName: decodeURI((params.fflogsParams[1] || '')).toLowerCase().replace(/ /g, '')
       };
 
       // Try to find the Encounter Name from one of the FFLogsEncounterRankings
@@ -174,6 +176,7 @@ export default async function FFLogsCharacterPage(
         encounterRankings = encounterRankings.filter(encounterRanking => 
           encounterRanking.spec.toLowerCase() == fflogsParams.jobName
         );
+        friendlySelectedJobName = decodeURI(params.fflogsParams[1]).replace(/([A-Z])/g, ' $1').trim();
         //console.log(encounterRankings);
       }
     }
@@ -293,9 +296,9 @@ export default async function FFLogsCharacterPage(
             {encounterName} ({metricToFriendly(params.metric)})
           </h2>
         : null}
-        {params.fflogsParams ?
+        {friendlySelectedJobName ?
           <h2 className={`textAlignCenter`}>
-            {params.fflogsParams[1]}
+            {friendlySelectedJobName}
           </h2> 
         : null}
         {encounterRankings ? 
@@ -306,7 +309,20 @@ export default async function FFLogsCharacterPage(
           </div>
         : null}
         {encounterRankings ?
-          createPieCharts(encounterRankings)
+            <div className={`${styles.chartWrapper} marginTop`}>
+              <div className={`card`}>
+                <h2 className={`textAlignCenter ${styles.titleBorder}`}>Job Breakdown</h2>
+                <div>
+                  <JobPieChart rankings={encounterRankings} currentPath={`${currentPath}/${params.fflogsParams[0]}`}/>
+                </div>
+              </div>
+              <div className={`card`}>
+                <h2 className={`textAlignCenter ${styles.titleBorder}`}>Ranking Breakdown</h2>
+                <div>
+                  <RankingPieChart rankings={encounterRankings}/>
+                </div>
+              </div>
+            </div>
         : null}
         {encounterRankings ?
           <RankingTable

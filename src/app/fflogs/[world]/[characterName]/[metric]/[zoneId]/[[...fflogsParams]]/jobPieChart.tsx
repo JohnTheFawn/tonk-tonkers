@@ -1,8 +1,8 @@
 'use client'
  
-import { Chart, ArcElement, Tooltip } from 'chart.js'
-import { Pie } from 'react-chartjs-2'
-import 'chartjs-adapter-moment'
+import { Chart, ArcElement, Tooltip, Interaction } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+import 'chartjs-adapter-moment';
 
 /**
  * Get an rgba color given a Job
@@ -73,27 +73,19 @@ function getJobColor(job: string){
 }
  
 export default function JobPieChart(
-    { rankings }: {rankings: {
-        bestSpec: string;
-    }[]
-}) {
+    { rankings, currentPath }: {
+        rankings: {
+            bestSpec: string;
+        }[];
+        currentPath: string;
+    }
+    ) {
 
     // Register the ChartJS specific elements we will use
     Chart.register(
         ArcElement,
         Tooltip
     );
-
-    // Configuration options for the chart
-    const rankingChartOptions = {
-        clip: false as const,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            }
-        }
-    };
 
     // Build up our datasets
     // Count of each job logged
@@ -120,8 +112,24 @@ export default function JobPieChart(
         jobCountArray.push(jobCounts[job]);
     });
 
+    // Configuration options for the chart
+    const jobChartOptions = {
+        clip: false as const,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        onClick: function(event: any, item: { index: number; }[]){
+            if(item[0]){
+                window.location.href = `${currentPath}/${jobChartData.labels[item[0].index]}`;
+            }
+        }
+    };
+
     // Build up our ChartJS data object
-    let rankingChartData: {
+    let jobChartData: {
         labels: string[];
         backgroundColor: string[];
         datasets: {
@@ -144,8 +152,8 @@ export default function JobPieChart(
     return (
         <Pie
             key={`jobPieChart`}
-            options={rankingChartOptions}
-            data={rankingChartData}
+            options={jobChartOptions}
+            data={jobChartData}
             height={"250px"}
         />
     )
