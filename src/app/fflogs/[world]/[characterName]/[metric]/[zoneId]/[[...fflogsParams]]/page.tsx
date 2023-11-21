@@ -293,7 +293,7 @@ export default async function FFLogsCharacterPage(
             {encounterName} ({metricToFriendly(params.metric)})
           </h2>
         : null}
-        {params.fflogsParams[1] ?
+        {params.fflogsParams ?
           <h2 className={`textAlignCenter`}>
             {params.fflogsParams[1]}
           </h2> 
