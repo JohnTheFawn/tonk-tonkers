@@ -1,8 +1,8 @@
 'use client'
  
-import { Chart, ArcElement, Tooltip } from 'chart.js'
-import { Pie } from 'react-chartjs-2'
-import 'chartjs-adapter-moment'
+import { Chart, ArcElement, Tooltip } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+import 'chartjs-adapter-moment';
 
 /**
  * Get an rgba color given a ranking
@@ -12,24 +12,24 @@ import 'chartjs-adapter-moment'
  */
 function getRankingColor(ranking: number){
     if(ranking < 25){
-      return 'rgba(102, 102, 102, .7)';
+        return '102, 102, 102';
     }
     if(ranking < 50){
-      return 'rgba(30, 255, 0, .7)';
+        return '30, 255, 0';
     }
     if(ranking < 75){
-      return 'rgba(0, 112, 255, .7)';
+        return '0, 112, 255';
     }
     if(ranking < 95){
-      return 'rgba(163, 53, 238, .7)';
+        return '163, 53, 238';
     }
     if(ranking < 99){
-      return 'rgba(255, 128, 0, .7)';
+        return '255, 128, 0';
     }
     if(ranking < 100){
-      return 'rgba(226, 104, 168, .7)';
+        return '226, 104, 168';
     }
-    return 'rgba(229, 204, 128, .7)';
+    return '229, 204, 128';
 }
  
 export default function RankingPieChart(
@@ -65,71 +65,34 @@ export default function RankingPieChart(
     const rankingNames: string[] = [];
     // An array of colors to go with the jobs
     const rankingColorArray: string[] = [];
+    const sliceOpacity = '.7';
     rankings.forEach(ranking => {
         const rank = ranking.historicalPercent;
+        let rankName = 'Gold';
         if(rank < 25){
-            const rankName = 'Grey';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (0-24)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(102, 102, 102, .7)');
-            }
-            rankingCounts[rankName]++;
+            rankName = 'Grey';
         }
         else if(rank < 50){
-            const rankName = 'Green';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (25-49)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(30, 255, 0, .7)');
-            }
-            rankingCounts[rankName]++;
+            rankName = 'Green';
         }
         else if(rank < 75){
-            const rankName = 'Blue';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (50-74)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(0, 112, 255, .7)');
-            }
-            rankingCounts[rankName]++;
+            rankName = 'Blue';
         }
         else if(rank < 95){
-            const rankName = 'Purple';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (75-94)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(163, 53, 238, .7)');
-            }
-            rankingCounts[rankName]++;
+            rankName = 'Purple';
         }
         else if(rank < 99){
-            const rankName = 'Orange';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (95 - 98)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(255, 128, 0, .7)');
-            }
-            rankingCounts[rankName]++;
+            rankName = 'Orange';
         }
         else if(rank < 100){
-            const rankName = 'Pink';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (99)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(226, 104, 168, .7)');
-            }
-            rankingCounts[rankName]++;
+            rankName = 'Pink';
         }
-        else{
-            const rankName = 'Gold';
-            if(!rankingCounts[rankName]){
-                rankingNames.push(rankName + ' (100)');
-                rankingCounts[rankName] = 0;
-                rankingColorArray.push('rgba(229, 204, 128, .7)');
-            }
-            rankingCounts[rankName]++;
+        if(!rankingCounts[rankName]){
+            rankingNames.push(rankName + ' (100)');
+            rankingCounts[rankName] = 0;
+            rankingColorArray.push(`rgba(${getRankingColor(rank)}, ${sliceOpacity})`);
         }
+        rankingCounts[rankName]++;
     });
 
     // Convert the Ranking count to an array
