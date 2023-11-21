@@ -5,6 +5,8 @@ import Link from 'next/link'
 import RankingChart from './rankingChart'
 import JobPieChart from './jobPieChart'
 import RankingPieChart from './rankingPieChart'
+import AllStarRankTable from './allStarRankTable';
+import JobIcon from './jobIcon';
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -124,106 +126,6 @@ function convertMillisecondsToFriendly(milliseconds: number){
   return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
 }
 
-function createRankingsBlock(
-    rankings: {
-      encounter: {
-        id: Key;
-        name: string;
-      };
-      rankPercent: number;
-      medianPercent: number;
-      totalKills: number;
-      fastestKill: number;
-      bestSpec: string;
-      allStars: {
-        points: number;
-        rank: number;
-        total: number;
-      };
-    }[],
-    currentPath: string
-  ){
-  return (
-    <table className={`${styles.table}`}>
-      <thead>
-        <tr>
-          <th>
-            <h3>Encounter</h3>
-          </th>
-          <th style={{width: 90}}>
-            <h3>
-              Best
-            </h3>
-          </th>
-          <th style={{width: 90}}>
-            <h3>
-              Median
-            </h3>
-          </th>
-          <th style={{width: 90}}>
-            <h3>
-              Kills
-            </h3>
-          </th>
-          <th style={{width: 90}}>
-            <h3>
-              Fastest
-            </h3>
-          </th>
-          <th style={{width: 90}}>
-            <h3>
-              Points
-            </h3>
-          </th>
-          <th style={{width: 90}}>
-            <h3>
-              Rank
-            </h3>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {rankings.map((ranking) => 
-          <tr key={ranking.encounter.id}>
-            <td>
-              <Link
-                href={`${currentPath}/${ranking.encounter.id}`}
-              >
-                <div>
-                  <u>
-                    {ranking.encounter.name}
-                  </u>
-                </div>
-              </Link>
-            </td>
-            <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}>
-              {friendlyPercentage(ranking.rankPercent)}%
-            </td>
-            <td className={`textAlignRight ${getRankingColor(ranking.medianPercent)}`}>
-              {friendlyPercentage(ranking.medianPercent)}%
-            </td>
-            <td className={`textAlignRight`}>
-              {ranking.totalKills}
-            </td>
-            <td className={`textAlignRight`}>
-              {convertMillisecondsToFriendly(ranking.fastestKill)}
-            </td>
-            <td className={`textAlignRight`}>
-              {ranking.allStars ? ranking.allStars.points : null}
-            </td>
-            <td
-              className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}
-              title={ranking.allStars ? `Rank ${ranking.allStars.rank} out of ${ranking.allStars.total}` : ``}>
-              {ranking.allStars ? ranking.allStars.rank : null}
-              {ranking.allStars ? createJobIcon(ranking.bestSpec) : null}
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </table>
-  );
-}
-
 function convertStartTimeToFriendly(startTime: number){
   const startTimeDate = new Date(startTime);
   return (startTimeDate.getMonth() + 1) + '/' + startTimeDate.getDate() + '/' + startTimeDate.getFullYear();
@@ -302,7 +204,7 @@ function createEncounterRankingsBlock(
               </td>
               <td className={`textAlignRight ${getRankingColor(ranking.historicalPercent)}`} title={ranking.bestSpec.replace(/([A-Z])/g, ' $1').trim()}>
                 {friendlyPercentage(ranking.historicalPercent)}%
-                {createJobIcon(ranking.bestSpec)}
+                <JobIcon jobName={ranking.bestSpec}/>
               </td>
               <td className={`textAlignRight`}>
                 {ranking.historicalTotalParses}
@@ -334,11 +236,6 @@ function createEncounterRankingsBlock(
   );
 }
 
-function getJobIcon(jobName: string){
-  const parsedJobName = jobName.toLowerCase();
-  return JOB_TO_ICON_MAP[parsedJobName];
-}
-
 function getRankingColor(ranking: number){
   if(ranking < 25){
     return styles.grey;
@@ -359,17 +256,6 @@ function getRankingColor(ranking: number){
     return styles.pink;
   }
   return styles.gold;
-}
-
-function createJobIcon(jobName: string){
-  return (
-    <Image
-      src={getJobIcon(jobName)}
-      className={`verticalAlignMiddle`}
-      alt={`${jobName} icon`}
-      width={20} height={20}
-    />
-  );
 }
 
 function metricToFriendly(metric: string){
@@ -469,7 +355,23 @@ export default async function FFLogsCharacterPage(
     //console.log(encounterRankings);
     //console.log(character);
     //console.log(zoneRankings);
-    const rankings = zoneRankings.rankings;
+    const rankings: {
+      encounter: {
+          id: Key;
+          name: string;
+      };
+      rankPercent: number;
+      medianPercent: number;
+      totalKills: number;
+      fastestKill: number;
+      bestSpec: string;
+      allStars: {
+          points: number;
+          rank: number;
+          total: number;
+      };
+    }[] = zoneRankings.rankings;
+
     const allStars = zoneRankings.allStars;
     //console.log(rankings);
     //console.log(allStars);
@@ -571,7 +473,10 @@ export default async function FFLogsCharacterPage(
             </h2>
           </span>
         </div>
-        {createRankingsBlock(rankings, `/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`)}
+        <AllStarRankTable
+          rankings={rankings}
+          currentPath={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`}
+        />
         {encounterRankings ? <h2 className={`textAlignCenter marginTop`}>{encounterName} ({metricToFriendly(params.metric)})</h2> : null}
         {encounterRankings ? createRankingChart(encounterRankings.ranks) : null}
         {encounterRankings ? createPieCharts(encounterRankings.ranks) : null}
