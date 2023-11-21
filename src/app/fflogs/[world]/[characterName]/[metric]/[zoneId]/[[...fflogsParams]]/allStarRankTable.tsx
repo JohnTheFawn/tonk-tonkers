@@ -7,28 +7,14 @@ import {
     convertMillisecondsToFriendly
 } from './utilityFunctions';
 import JobIcon from './jobIcon';
+import { FFLogsAllStarRanking } from './fflogsInterfaces';
 
 export default function AllStarRankTable(
         {
             rankings,
             currentPath
         }: {
-            rankings: {
-                encounter: {
-                    id: Key;
-                    name: string;
-                };
-                rankPercent: number;
-                medianPercent: number;
-                totalKills: number;
-                fastestKill: number;
-                bestSpec: string;
-                allStars: {
-                    points: number;
-                    rank: number;
-                    total: number;
-                };
-            }[];
+            rankings: FFLogsAllStarRanking[];
             currentPath: string;
         }
     ){

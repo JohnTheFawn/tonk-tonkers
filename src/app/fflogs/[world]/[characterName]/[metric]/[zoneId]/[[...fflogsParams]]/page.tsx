@@ -11,6 +11,7 @@ import {
   getRankingColor,
   metricToFriendly
 } from './utilityFunctions';
+import { FFLogsAllStarRanking } from './fflogsInterfaces';
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -164,22 +165,7 @@ export default async function FFLogsCharacterPage(
     //console.log(encounterRankings);
     //console.log(character);
     //console.log(zoneRankings);
-    const rankings: {
-      encounter: {
-          id: Key;
-          name: string;
-      };
-      rankPercent: number;
-      medianPercent: number;
-      totalKills: number;
-      fastestKill: number;
-      bestSpec: string;
-      allStars: {
-          points: number;
-          rank: number;
-          total: number;
-      };
-    }[] = zoneRankings.rankings;
+    const rankings: FFLogsAllStarRanking[] = zoneRankings.rankings;
 
     const allStars = zoneRankings.allStars;
     //console.log(rankings);
