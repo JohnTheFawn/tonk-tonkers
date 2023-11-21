@@ -178,6 +178,10 @@ a {
   border-radius: var(--border-radius);
 }
 
+.cardLink:hover{
+  background-color: rgba(255, 255, 255, .1);
+}
+
 .button{
   padding: .5rem;
   border: 1px solid rgba(var(--callout-border-rgb), 1);
@@ -198,6 +202,10 @@ a {
   background-color: rgba(163, 41, 51, .4);
 }
 
+.marginTop{
+  margin-top: .8em;
+}
+
 .marginRight{
   margin-right: .8em;
 }
@@ -206,8 +214,24 @@ a {
   margin-bottom: .8em;
 }
 
-.marginTop{
-  margin-top: .8em;
+.paddingLeft{
+  padding-left: .8em;
+}
+
+.paddingTop{
+  padding-top: .8em;
+}
+
+.paddingRight{
+  padding-right: .8em;
+}
+
+.paddingBottom{
+  padding-bottom: .8em;
+}
+
+.paddingLeft{
+  padding-left: .8em;
 }
 
 .verticalAlignMiddle {
@@ -224,6 +248,10 @@ a {
 
 .textAlignLeft{
   text-align: left;
+}
+
+.borderBottom{
+  border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.3);
 }
 
 .code {
