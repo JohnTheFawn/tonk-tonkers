@@ -209,11 +209,13 @@ function createRankingsBlock(
               {convertMillisecondsToFriendly(ranking.fastestKill)}
             </td>
             <td className={`textAlignRight`}>
-              {ranking.allStars.points}
+              {ranking.allStars ? ranking.allStars.points : null}
             </td>
-            <td className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}  title={`Rank ${ranking.allStars.rank} out of ${ranking.allStars.total}`}>
-              {ranking.allStars.rank}
-              {createJobIcon(ranking.bestSpec)}
+            <td
+              className={`textAlignRight ${getRankingColor(ranking.rankPercent)}`}
+              title={ranking.allStars ? `Rank ${ranking.allStars.rank} out of ${ranking.allStars.total}` : ``}>
+              {ranking.allStars ? ranking.allStars.rank : null}
+              {ranking.allStars ? createJobIcon(ranking.bestSpec) : null}
             </td>
           </tr>
         )}
