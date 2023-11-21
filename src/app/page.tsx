@@ -24,7 +24,7 @@ export default function Home() {
         'CSS'
       ],
       descriptions: [
-        'Adds resizable bars to the UI for each mitigation on your character.',
+        'Adds resizable bars (shown on the left side of the example below) to the UI for each mitigation on your character.',
         'Timers include tenths place so there is no guessing when they fall off.'
       ],
       githubLink: 'https://github.com/JohnTheFawn/ffxiv-mitigation-overlay/',
@@ -38,7 +38,7 @@ export default function Home() {
         was both correct and "felt" correct. In the screenshot below you'll notice the default icons below
         the pink bar actually tick down until the timer disappears and then they randomly go away. This is
         because the tenths place isn't shown and they are on a 1(ish) second update rate. This plugin
-        addresses those issues.`
+        addresses those issues. Check the Github link for more screenshots and examples.`
     },
     {
       name: 'FFXIV Debugger',
@@ -92,7 +92,7 @@ export default function Home() {
           - An integration with the <Link href="https://www.fflogs.com/"><u>FFLogs</u></Link> api.
         </p>
         <p title="Nerdy info I could go on for days and days about" className={`paddingBottom`}>
-          🤓: Mostly server side with JS only being required for the charts and a few portions of the navigation
+          🤓 Mostly server side with JS only being required for the charts and a few portions of the navigation
           requiring user input. Had some fun with Chart.js. Filtering down by Job actually helped me see some personal
           trends, kind of fun to see it being useful immediately. Deployed on <Link href="https://vercel.com" target="_blank"><u>Vercel</u></Link>
           , domain is from <Link href="https://porkbun.com/" target="_blank"><u>PorkBun</u></Link>.
@@ -131,7 +131,7 @@ export default function Home() {
                 )}
               </div>
               <p title="Nerdy info I could go on for days and days about" className={`paddingBottom`}>
-                🤓: {pluginExample.nerdyInfo}
+                🤓 {pluginExample.nerdyInfo}
               </p>
               <div className={`textAlignCenter paddingBottom`}>
                 <Link href={pluginExample.imagePath} target="_blank">
