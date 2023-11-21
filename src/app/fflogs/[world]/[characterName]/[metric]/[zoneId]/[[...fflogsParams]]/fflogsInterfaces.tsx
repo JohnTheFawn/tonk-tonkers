@@ -1,6 +1,6 @@
 import { Key } from 'react';
 
-export interface FFLogsAllStarRanking {
+export interface FFLogsZoneRanking {
     encounter: {
         id: Key;
         name: string;

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import RankingChart from './rankingChart'
 import JobPieChart from './jobPieChart'
 import RankingPieChart from './rankingPieChart'
-import AllStarRankTable from './allStarRankTable';
+import ZoneRankingTable from './zoneRankingTable';
 import RankingTable from './rankingTable';
 import {
   friendlyPercentage,
@@ -12,7 +12,7 @@ import {
   metricToFriendly
 } from './utilityFunctions';
 import {
-  FFLogsAllStarRanking,
+  FFLogsZoneRanking,
   FFLogsEncounterRanking
 } from './fflogsInterfaces';
 
@@ -151,14 +151,19 @@ export default async function FFLogsCharacterPage(
     const character = response.data.characterData.character;
     const characterId = character.id;
     const characterName = character.name;
-    const zoneRankings = character.zoneRankings;
-    const encounterRankings: FFLogsEncounterRanking[] = character.encounterRankings ? character.encounterRankings.ranks : null;
+    let zoneRankings = character.zoneRankings;
+    let encounterRankings: FFLogsEncounterRanking[] = character.encounterRankings ? character.encounterRankings.ranks : null;
 
     let encounterName = '';
     if(params.fflogsParams){
+      const fflogsParams = {
+        encounterId: params.fflogsParams[0],
+        jobName: params.fflogsParams[1]
+      };
+
       for(let i = 0; i < zoneRankings.rankings.length; i++){
         const tempRanking = zoneRankings.rankings[i];
-        if(tempRanking.encounter.id == params.fflogsParams[0]){
+        if(tempRanking.encounter.id == fflogsParams.encounterId){
           encounterName = tempRanking.encounter.name;
           break;
         }
@@ -168,7 +173,7 @@ export default async function FFLogsCharacterPage(
     //console.log(encounterRankings);
     //console.log(character);
     //console.log(zoneRankings);
-    const rankings: FFLogsAllStarRanking[] = zoneRankings.rankings;
+    const rankings: FFLogsZoneRanking[] = zoneRankings.rankings;
 
     const allStars = zoneRankings.allStars;
     //console.log(rankings);
@@ -271,7 +276,7 @@ export default async function FFLogsCharacterPage(
             </h2>
           </span>
         </div>
-        <AllStarRankTable
+        <ZoneRankingTable
           rankings={rankings}
           currentPath={`/fflogs/${params.world}/${params.characterName}/${params.metric}/${params.zoneId}`}
         />

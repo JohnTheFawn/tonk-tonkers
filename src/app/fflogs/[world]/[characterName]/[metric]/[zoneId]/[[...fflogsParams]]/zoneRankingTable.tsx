@@ -7,14 +7,14 @@ import {
     convertMillisecondsToFriendly
 } from './utilityFunctions';
 import JobIcon from './jobIcon';
-import { FFLogsAllStarRanking } from './fflogsInterfaces';
+import { FFLogsZoneRanking } from './fflogsInterfaces';
 
-export default function AllStarRankTable(
+export default function ZoneRankingTable(
         {
             rankings,
             currentPath
         }: {
-            rankings: FFLogsAllStarRanking[];
+            rankings: FFLogsZoneRanking[];
             currentPath: string;
         }
     ){
