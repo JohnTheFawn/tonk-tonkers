@@ -12,7 +12,7 @@ function convertStartTimeToFriendly(startTime: number){
   return (startTimeDate.getMonth() + 1) + '/' + startTimeDate.getDate() + '/' + startTimeDate.getFullYear();
 }
 
-export default function AllStarRankTable(
+export default function RankingTable(
         {
             rankings,
             metric
