@@ -1,7 +1,9 @@
 import styles from './page.module.css'
 
-export function friendlyPercentage(raw: number){
-    return Math.floor(raw);
+export function convertMillisecondsToFriendly(milliseconds: number){
+  const seconds = Math.floor((milliseconds / 1000) % 60);
+  const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+  return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
 }
 
 export function getRankingColor(ranking: number){
@@ -26,8 +28,19 @@ export function getRankingColor(ranking: number){
   return styles.gold;
 }
 
-export function convertMillisecondsToFriendly(milliseconds: number){
-  const seconds = Math.floor((milliseconds / 1000) % 60);
-  const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
-  return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+export function friendlyPercentage(raw: number){
+    return Math.floor(raw);
+}
+
+export function metricToFriendly(metric: string){
+  if(metric == 'rdps'){
+    return 'Damage';
+  }
+  if(metric == 'hps'){
+    return 'Healing';
+  }
+  if(metric == 'playerspeed'){
+    return 'Speed';
+  }
+  return '';
 }

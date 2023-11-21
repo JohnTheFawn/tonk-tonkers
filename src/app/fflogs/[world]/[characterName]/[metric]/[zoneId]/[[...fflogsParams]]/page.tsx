@@ -6,7 +6,11 @@ import JobPieChart from './jobPieChart'
 import RankingPieChart from './rankingPieChart'
 import AllStarRankTable from './allStarRankTable';
 import RankingTable from './rankingTable';
-import { friendlyPercentage } from './utilityFunctions';
+import {
+  friendlyPercentage,
+  getRankingColor,
+  metricToFriendly
+} from './utilityFunctions';
 
 let accessToken: string = '';
 let accessTokenExpiresAt: Date | null = null;
@@ -14,28 +18,6 @@ let accessTokenExpiresAt: Date | null = null;
 const fflogsBaseUrl = 'https://www.fflogs.com';
 const fflogsAuthUrl = fflogsBaseUrl + '/oauth/token';
 const fflogsApiUrl = fflogsBaseUrl + '/api/v2';
-
-const JOB_TO_ICON_MAP: Record<string, string> = {
-  'astrologian': '/icons/jobs/astrologian.png',
-  'blackmage': '/icons/jobs/black-mage.png',
-  'bluemage': '/icons/jobs/blue-mage.png',
-  'dancer': '/icons/jobs/dancer.png',
-  'darkknight': '/icons/jobs/dark-knight.png',
-  'dragoon': '/icons/jobs/dragoon.png',
-  'gunbreaker': '/icons/jobs/gunbreaker.png',
-  'machinist': '/icons/jobs/machinist.png',
-  'monk': '/icons/jobs/monk.png',
-  'ninja': '/icons/jobs/ninja.png',
-  'paladin': '/icons/jobs/paladin.png',
-  'reaper': '/icons/jobs/reaper.png',
-  'redmage': '/icons/jobs/red-mage.png',
-  'sage': '/icons/jobs/sage.png',
-  'samurai': '/icons/jobs/samurai.png',
-  'scholar': '/icons/jobs/scholar.png',
-  'summoner': '/icons/jobs/summoner.png',
-  'warrior': '/icons/jobs/warrior.png',
-  'whitemage': '/icons/jobs/white-mage.png'
-};
 
 const ZONE_ID_ASPHODELOS = 44;
 const ZONE_ID_ABYSSOS = 49;
@@ -113,41 +95,6 @@ function generateAuthentication(){
       'grant_type': 'client_credentials'
     })
   });
-}
-
-function getRankingColor(ranking: number){
-  if(ranking < 25){
-    return styles.grey;
-  }
-  if(ranking < 50){
-    return styles.green;
-  }
-  if(ranking < 75){
-    return styles.blue;
-  }
-  if(ranking < 95){
-    return styles.purple;
-  }
-  if(ranking < 99){
-    return styles.orange;
-  }
-  if(ranking < 100){
-    return styles.pink;
-  }
-  return styles.gold;
-}
-
-function metricToFriendly(metric: string){
-  if(metric == 'rdps'){
-    return 'Damage';
-  }
-  if(metric == 'hps'){
-    return 'Healing';
-  }
-  if(metric == 'playerspeed'){
-    return 'Speed';
-  }
-  return '';
 }
 
 function createPieCharts(
