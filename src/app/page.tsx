@@ -78,7 +78,7 @@ export default function Home() {
       imageAlt: 'Party Parses example',
       imagePath: '/examples/party-parses.png',
       nerdyInfo: `Listens to the ACT websocket for each "Party Changed" event, decodes it, looks up the user
-      on fflogs, and displays the information on a convenient overlay. Updates itself whenever someone joins
+      on FFLogs, and displays the information on a convenient overlay. Updates itself whenever someone joins
       or leaves.`
     }
   ];
