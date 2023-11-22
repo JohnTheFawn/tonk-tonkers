@@ -11,7 +11,7 @@ import p2RemoteGlitchStack from '../../../../../public/ultimates/top/p2-remote-g
 export default function P2Page() {
     return (
         <main className={"cardWrapper"}>
-            <Link className={"card"} href="/ultimates/top">
+            <Link className={"cardLink"} href="/ultimates/top">
                 <h1>Back to Overview</h1>
             </Link>
             <div className={"card"}>
