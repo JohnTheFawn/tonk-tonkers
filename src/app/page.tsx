@@ -3,6 +3,7 @@ import Image, { StaticImageData } from 'next/image';
 import fflogsIntegrationExample from '../../public/examples/fflogs-integration.png';
 import ffxivMitigationOverlay from '../../public/examples/ffxiv-mitigation-overlay.gif';
 import ffxivDebugger from '../../public/examples/ffxiv-debugger.png';
+import partyParses from '../../public/examples/party-parses.png';
 
 export default function Home() {
 
@@ -10,7 +11,7 @@ export default function Home() {
     name: string;
     languages: string[];
     descriptions: string[];
-    githubLink: string;
+    githubLink: string | null;
     image: StaticImageData;
     imageAlt: string;
     imagePath: string;
@@ -55,10 +56,30 @@ export default function Home() {
       image: ffxivDebugger,
       imageAlt: 'FFXIV Debugger example',
       imagePath: '/examples/ffxiv-debugger.png',
-      nerdyInfo: `Listens to the ACT websocket for each log line sent to the server, decodes it based on the log type,
-        converts it to a friendly object, provides dev buttons/tools to inspect or copy or filter messages.
-        I mostly used this project as a way to explore the messages being sent to get a better grasp of what
-        types of information was available to me.`
+      nerdyInfo: `Listens to the ACT websocket for each log line, decodes it based on the log type, converts 
+        it to a friendly object, provides dev buttons/tools to inspect or copy or filter messages. I mostly
+        used this project as a way to explore the messages being sent to get a better grasp of what types
+        of information was available to me.`
+    },
+    {
+      name: 'Party Parses',
+      languages: [
+        'JavaScript',
+        'HTML',
+        'CSS'
+      ],
+      descriptions: [
+        'In game FFLogs integration that looks up your current party.',
+        'Clicking the icon expands/collapses everything.',
+        'Bounces off a Node.js server running locally to fetch data from FFLogs.'
+      ],
+      githubLink: null,
+      image: partyParses,
+      imageAlt: 'Party Parses example',
+      imagePath: '/examples/party-parses.png',
+      nerdyInfo: `Listens to the ACT websocket for each "Party Changed" event, decodes it, looks up the user
+      on fflogs, and displays the information on a convenient overlay. Updates itself whenever someone joins
+      or leaves.`
     }
   ];
 
@@ -106,22 +127,24 @@ export default function Home() {
 
       <div className={`card`}>
         <h2>Plugins</h2>
-        <div className={`borderBottom paddingBottom marginBottom`}>
+        <div className={`marginBottom`}>
           <p>
             A showcase of the plugins I have programmed for Final Fantasy 14.
           </p>
         </div>
         <ul className={`paddingBottom`}>
           {pluginExamples.map(pluginExample => 
-            <li key={pluginExample.name}>
+            <li key={pluginExample.name} className={`borderTop paddingTop`}>
               <h2>{pluginExample.name}</h2>
               <code>{pluginExample.languages.join(', ')}</code>
               <div className={`paddingTop`}>
-                <Link href={pluginExample.githubLink} target="_blank">
-                  <u>
-                    {pluginExample.githubLink}
-                  </u>
-                </Link>
+                {pluginExample.githubLink ? 
+                  <Link href={pluginExample.githubLink} target="_blank">
+                    <u>
+                      {pluginExample.githubLink}
+                    </u>
+                  </Link>
+                : null}
               </div>
               <div className={`paddingTop paddingBottom`}>
                 {pluginExample.descriptions.map(description => 
