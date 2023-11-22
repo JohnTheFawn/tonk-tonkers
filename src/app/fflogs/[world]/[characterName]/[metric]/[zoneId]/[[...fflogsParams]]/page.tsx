@@ -100,34 +100,6 @@ function generateAuthentication(){
   });
 }
 
-function createPieCharts(
-    ranks: {
-      historicalPercent: number;
-      bestSpec: string;
-    }[],
-    currentPath: string
-  ){
-  if(!ranks){
-    return (null);
-  }
-  return (
-    <div className={`${styles.chartWrapper} marginTop`}>
-      <div className={`card`}>
-        <h2 className={`textAlignCenter ${styles.titleBorder}`}>Job Breakdown</h2>
-        <div>
-          <JobPieChart rankings={ranks} currentPath={currentPath}/>
-        </div>
-      </div>
-      <div className={`card`}>
-        <h2 className={`textAlignCenter ${styles.titleBorder}`}>Ranking Breakdown</h2>
-        <div>
-          <RankingPieChart rankings={ranks}/>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default async function FFLogsCharacterPage(
   {params}:
   {

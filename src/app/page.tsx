@@ -4,19 +4,74 @@ import fflogsIntegrationExample from '../../public/examples/fflogs-integration.p
 import ffxivMitigationOverlay from '../../public/examples/ffxiv-mitigation-overlay.gif';
 import ffxivDebugger from '../../public/examples/ffxiv-debugger.png';
 import partyParses from '../../public/examples/party-parses.png';
+import reactMusicInfo from '../../public/examples/react-music-info.png';
+import dadJokes from '../../public/examples/dad-jokes.png';
 
 export default function Home() {
 
-  const pluginExamples: {
+  interface workExample {
     name: string;
     languages: string[];
     descriptions: string[];
-    githubLink: string | null;
+    githubLink?: string;
     image: StaticImageData;
     imageAlt: string;
     imagePath: string;
     nerdyInfo: string;
-  }[] = [
+    url?: string;
+  };
+
+  const websiteExamples: workExample[] = [
+    {
+      name: 'React Music Info',
+      languages: [
+        'React',
+        'Typescript',
+        'Node.js',
+        'Javascript',
+        'HTML',
+        'CSS'
+      ],
+      descriptions: [
+        'A React website built on top of the Spotify API.',
+        'Search and explore artists, their albums, related artists, and songs.',
+        'Uses Chart.js for some of the fun graphs.',
+        'Deployed on Netlify with a serverless backend for the API requests.',
+        'Custom media player styling.'
+      ],
+      image: reactMusicInfo,
+      imageAlt: 'React Music Info example',
+      imagePath: '/examples/react-music-info.png',
+      nerdyInfo: `A project I used to learn React initially. Mostly just built on top of Spotify's API. Reskinning
+        the music player was a fun little thing to learn, you basically make a fake one that sends the commands
+        to the real one. There is a small serverless function that handles the API calls, also hosted on Netlify. I
+        originally had this on an AWS ec2 instance, but managing it this way was much simpler, and converting
+        the server side portion over was very easy and quick.`,
+      url: 'https://react-music.info/'
+    },
+    {
+      name: 'Dad Jokes',
+      languages: [
+        'Ember.js',
+        'Javascript',
+        'HTML',
+        'CSS'
+      ],
+      descriptions: [
+        'A joke website I made with Ember.js for a Friday 1 hour hackathon.'
+      ],
+      image: dadJokes,
+      imageAlt: 'Dad Jokes example',
+      imagePath: '/examples/dad-jokes.png',
+      nerdyInfo: `Wayfair used to have an employee run 1 hour javascript challenge every Friday. One week it
+        was to build a simple website that would deliver jokes from the dad joke api (https://icanhazdadjoke.com/api).
+        I had been spending a lot of time in Ember.js at my previous job and had scripts set up to do 1 line
+        deploys to s3 buckets, so I just slapped in an image from Unsplash, did some minor css, and set it out.`,
+      url: 'http://dad-joke.s3-website-us-east-1.amazonaws.com/'
+    }
+  ];
+
+  const pluginExamples: workExample[] = [
     {
       name: 'Mitigation Overlay',
       languages: [
@@ -73,7 +128,6 @@ export default function Home() {
         'Clicking the icon expands/collapses everything.',
         'Bounces off a Node.js server running locally to fetch data from FFLogs.'
       ],
-      githubLink: null,
       image: partyParses,
       imageAlt: 'Party Parses example',
       imagePath: '/examples/party-parses.png',
@@ -91,6 +145,42 @@ export default function Home() {
           Tonk Tonkers | <code className={"code"}>src/app/page.tsx</code>
         </u>
       </Link>
+
+      {websiteExamples.map(websiteExample => 
+        <div className={`card`} key={websiteExample.name}>
+          <h2>{websiteExample.name}</h2>
+          <code>{websiteExample.languages.join(', ')}</code>
+          {websiteExample.url ? 
+            <Link href={websiteExample.url} target="_blank" className={`cardLink marginBottom`}>
+              <u>
+                  {websiteExample.name} | <code className={`code`}>{websiteExample.url}</code>
+              </u>
+            </Link>
+          : null}
+          {websiteExample.githubLink ? 
+            <Link href={websiteExample.githubLink} target="_blank">
+              <u>
+                {websiteExample.githubLink}
+              </u>
+            </Link>
+          : null}
+          <div className={`paddingTop paddingBottom`}>
+            {websiteExample.descriptions.map(description => 
+              <p key={description}>
+                - {description}
+              </p>
+            )}
+          </div>
+          <p title="Nerdy info I could go on for days and days about" className={`paddingBottom`}>
+            🤓 {websiteExample.nerdyInfo}
+          </p>
+          <div className={`textAlignCenter paddingBottom`}>
+            <Link href={websiteExample.imagePath} target="_blank">
+              <Image className={`marginTop`} src={websiteExample.image} height={350} alt={websiteExample.imageAlt}/>
+            </Link>
+          </div>
+        </div>
+      )}
 
       <div className={`card`}>
         <h2>FFLogs Integration</h2>
@@ -111,6 +201,8 @@ export default function Home() {
         </div>
         <p className={`paddingTop paddingBottom`}>
           - An integration with the <Link href="https://www.fflogs.com/"><u>FFLogs</u></Link> api.
+          <br/>
+          - Pulls in Character data (given a World and Character Name) and displays information related to the charcter.
         </p>
         <p title="Nerdy info I could go on for days and days about" className={`paddingBottom`}>
           🤓 Mostly server side with JS only being required for the charts and a few portions of the navigation
