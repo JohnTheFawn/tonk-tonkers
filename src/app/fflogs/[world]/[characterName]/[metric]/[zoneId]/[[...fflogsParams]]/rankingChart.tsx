@@ -79,7 +79,7 @@ export default function RankingChart(
         else if(ranking.historicalPercent < 75){
             blueRankingDataset.push(rankingData);
         }
-        else if(ranking.historicalPercent < 96){
+        else if(ranking.historicalPercent < 95){
             purpleRankingDataset.push(rankingData);
         }
         else if(ranking.historicalPercent < 99){
