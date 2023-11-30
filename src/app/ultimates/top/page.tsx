@@ -49,19 +49,19 @@ export default function TopPage() {
     return (
         <main className={"cardWrapper"}>
 
-            <Link className={"cardLink"} target="_blank" href="https://docs.google.com/spreadsheets/d/1ROErvG1BhTuNvXqPGcR6ZyyhJ7uNTZdf2WzKyVj9hh4" >
+            <Link className={`cardLink marginBottom`} target="_blank" href="https://docs.google.com/spreadsheets/d/1ROErvG1BhTuNvXqPGcR6ZyyhJ7uNTZdf2WzKyVj9hh4" >
                 <h1>
                     Mit Sheet
                 </h1>
             </Link>
 
-            <Link className={"cardLink"} target="_blank" href="https://pastebin.com/2ZVgUnCY" >
+            <Link className={`cardLink marginBottom`} target="_blank" href="https://pastebin.com/2ZVgUnCY" >
                 <h1>
                     PF Pastebin
                 </h1>
             </Link>
 
-            <Link className={"cardLink"} href="/ultimates/top/clearvods" >
+            <Link className={`cardLink`} href="/ultimates/top/clearvods" >
                 <h1>
                     Clear Vods
                 </h1>
@@ -220,7 +220,7 @@ export default function TopPage() {
                     </div>
                 </div>
 
-                <Link className={"cardLink"} href="/ultimates/top/p2">
+                <Link className={`cardLink marginTop`} href="/ultimates/top/p2">
                     <h3>More Info</h3>
                 </Link>
 

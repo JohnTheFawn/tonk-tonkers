@@ -151,7 +151,7 @@ export default function Home() {
           <h2>{websiteExample.name}</h2>
           <code>{websiteExample.languages.join(', ')}</code>
           {websiteExample.url ? 
-            <Link href={websiteExample.url} target="_blank" className={`cardLink marginBottom`}>
+            <Link href={websiteExample.url} target="_blank" className={`cardLink marginBottom marginTop`}>
               <u>
                   {websiteExample.name} | <code className={`code`}>{websiteExample.url}</code>
               </u>

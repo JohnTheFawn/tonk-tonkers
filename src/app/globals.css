@@ -171,7 +171,7 @@ a {
   z-index: 2;
   font-family: var(--font-mono);
   
-  margin-top: .5em;
+  /*margin-top: .5em;*/
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
@@ -203,35 +203,35 @@ a {
 }
 
 .marginTop{
-  margin-top: .8em;
+  margin-top: .5em;
 }
 
 .marginRight{
-  margin-right: .8em;
+  margin-right: .5em;
 }
 
 .marginBottom{
-  margin-bottom: .8em;
+  margin-bottom: .5em;
 }
 
 .paddingLeft{
-  padding-left: .8em;
+  padding-left: .5em;
 }
 
 .paddingTop{
-  padding-top: .8em;
+  padding-top: .5em;
 }
 
 .paddingRight{
-  padding-right: .8em;
+  padding-right: .5em;
 }
 
 .paddingBottom{
-  padding-bottom: .8em;
+  padding-bottom: .5em;
 }
 
 .paddingLeft{
-  padding-left: .8em;
+  padding-left: .5em;
 }
 
 .verticalAlignMiddle {
