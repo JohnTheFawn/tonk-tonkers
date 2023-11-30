@@ -5,6 +5,6 @@
 }
 
 .worldCardLink{
-    background: linear-gradient(135deg, rgba(255,3,249,0.4962185557816877) 0%, rgba(52,52,177,0.5) 45%, rgba(0,212,255,0.5) 100%);
+    background: linear-gradient(135deg, rgba(255,0,255,0.5) 0%, rgba(52,52,177,0.5) 45%, rgba(0,212,255,0.5) 100%);
     background-attachment: fixed;
 }
