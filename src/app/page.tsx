@@ -18,7 +18,7 @@ export default function Home() {
     imageAlt: string;
     imagePath: string;
     nerdyInfo: string;
-    url?: string;
+    links: Array<{title: string; url: string}>;
   };
 
   const websiteExamples: workExample[] = [
@@ -47,7 +47,40 @@ export default function Home() {
         to the real one. There is a small serverless function that handles the API calls, also hosted on Netlify. I
         originally had this on an AWS ec2 instance, but managing it this way was much simpler, and converting
         the server side portion over was very easy and quick.`,
-      url: 'https://react-music.info/'
+      links: [{
+        title: 'React Music Info',
+        url: 'https://react-music.info/'
+      }]
+    },
+    {
+      name: 'FFLogs Integration',
+      languages: [
+        'Next.js',
+        'React',
+        'Chart.js',
+        'Typescript',
+        'Javascript',
+        'HTML',
+        'CSS'
+      ],
+      descriptions: [
+        'An integration with the FFLogs API: https://www.fflogs.com/',
+        'Pulls in Character data (given a World and Character Name) and displays information related to the charcter.'
+      ],
+      image: fflogsIntegrationExample,
+      imageAlt: 'FFLogs Integration example',
+      imagePath: '/examples/fflogs-integration.png',
+      nerdyInfo: `Mostly server side with JS only being required for the charts and a few portions of the navigation
+      requiring user input. Had some fun with Chart.js. Filtering down by Job actually helped me see some personal trends,
+      kind of fun to see it being useful immediately. Deployed on Vercel, domain is from PorkBun.`,
+      links: [{
+        title: 'FFLogs (Tonk Tonkers)',
+        url: '/fflogs/Coeurl/Tonk Tonkers/rdps/55/1070'
+      }, {
+        title: 'FFLogs (manual)',
+        url: '/fflogs'
+      }],
+      githubLink: 'https://github.com/JohnTheFawn/tonk-tonkers'
     },
     {
       name: 'Dad Jokes',
@@ -67,7 +100,10 @@ export default function Home() {
         was to build a simple website that would deliver jokes from the dad joke api (https://icanhazdadjoke.com/api).
         I had been spending a lot of time in Ember.js at my previous job and had scripts set up to do 1 line
         deploys to s3 buckets, so I just slapped in an image from Unsplash, did some minor css, and set it out.`,
-      url: 'http://dad-joke.s3-website-us-east-1.amazonaws.com/'
+        links: [{
+          title: 'Dad Jokes',
+          url: 'http://dad-joke.s3-website-us-east-1.amazonaws.com/'
+        }]
     }
   ];
 
@@ -87,6 +123,7 @@ export default function Home() {
       image: ffxivMitigationOverlay,
       imageAlt: 'FFXIV Mitigation Overlay example',
       imagePath: '/examples/ffxiv-mitigation-overlay.gif',
+      links: [],
       nerdyInfo: `Listens to the ACT websocket for combat logs, filters down to status effects gained
         message types, uses a white list to filter which mitigations are applied to you. Loading bars
         are SVGs so resizing can work properly, javascript handles their resizing based on status
@@ -111,6 +148,7 @@ export default function Home() {
       image: ffxivDebugger,
       imageAlt: 'FFXIV Debugger example',
       imagePath: '/examples/ffxiv-debugger.png',
+      links: [],
       nerdyInfo: `Listens to the ACT websocket for each log line, decodes it based on the log type, converts 
         it to a friendly object, provides dev buttons/tools to inspect or copy or filter messages. I mostly
         used this project as a way to explore the messages being sent to get a better grasp of what types
@@ -131,6 +169,7 @@ export default function Home() {
       image: partyParses,
       imageAlt: 'Party Parses example',
       imagePath: '/examples/party-parses.png',
+      links: [],
       nerdyInfo: `Listens to the ACT websocket for each "Party Changed" event, decodes it, looks up the user
       on FFLogs, and displays the information on a convenient overlay. Updates itself whenever someone joins
       or leaves.`
@@ -150,13 +189,13 @@ export default function Home() {
         <div className={`card marginTop`} key={websiteExample.name}>
           <h2>{websiteExample.name}</h2>
           <code>{websiteExample.languages.join(', ')}</code>
-          {websiteExample.url ? 
-            <Link href={websiteExample.url} target="_blank" className={`cardLink marginBottom marginTop`}>
+          {websiteExample.links.map(link => 
+            <Link href={link.url} target="_blank" className={`cardLink marginBottom marginTop`} key={link.title}>
               <u>
-                  {websiteExample.name} | <code className={`code`}>{websiteExample.url}</code>
+                  {link.title} | <code className={`code`}>{link.url}</code>
               </u>
             </Link>
-          : null}
+          )}
           {websiteExample.githubLink ? 
             <Link href={websiteExample.githubLink} target="_blank">
               <u>
@@ -181,46 +220,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
-      <div className={`card marginTop`}>
-        <h2>FFLogs Integration</h2>
-        <code>Next.js, TypeScript, JavaScript, HTML, CSS, Chart.js</code>
-        <div className={`paddingTop`}>
-          <Link className={`cardLink marginBottom`} href="/fflogs/Coeurl/Tonk Tonkers/rdps/55/1070">
-              <u>
-                FF Logs (Tonk Tonkers) | <code className={`code`}>src/app/fflogs/[world]/[characterName]/[metric]/[zoneId]/[[...fflogsParams]]page.tsx</code>
-              </u>
-          </Link>
-          <Link className={`cardLink marginBottom`} href="/fflogs">
-              <u>
-                FF Logs (manual lookup) | <code className={`code`}>src/app/fflogs/page.tsx</code>
-              </u>
-          </Link>
-        </div>
-        <div className={`paddingTop`}>
-          <Link href="https://github.com/JohnTheFawn/tonk-tonkers" target="_blank">
-            <u>
-              https://github.com/JohnTheFawn/tonk-tonkers
-            </u>
-          </Link>
-        </div>
-        <p className={`paddingTop paddingBottom`}>
-          - An integration with the <Link href="https://www.fflogs.com/"><u>FFLogs</u></Link> api.
-          <br/>
-          - Pulls in Character data (given a World and Character Name) and displays information related to the charcter.
-        </p>
-        <p title="Nerdy info I could go on for days and days about" className={`paddingBottom`}>
-          🤓 Mostly server side with JS only being required for the charts and a few portions of the navigation
-          requiring user input. Had some fun with Chart.js. Filtering down by Job actually helped me see some personal
-          trends, kind of fun to see it being useful immediately. Deployed on <Link href="https://vercel.com" target="_blank"><u>Vercel</u></Link>
-          , domain is from <Link href="https://porkbun.com/" target="_blank"><u>PorkBun</u></Link>.
-        </p>
-        <div className={`textAlignCenter paddingBottom`}>
-          <Link href="/examples/fflogs-integration.png" target="_blank">
-            <Image className={`marginTop`} src={fflogsIntegrationExample} height={350} alt="FFLogs Integration example"/>
-          </Link>
-        </div>
-      </div>
 
       <div className={`card marginTop`}>
         <h2>Plugins</h2>
