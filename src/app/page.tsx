@@ -188,7 +188,12 @@ export default function Home() {
         <div className={`paddingTop`}>
           <Link className={`cardLink marginBottom`} href="/fflogs/Coeurl/Tonk Tonkers/rdps/55/1070">
               <u>
-                FF Logs | <code className={`code`}>src/app/fflogs/[world]/[characterName]/[metric]/[zoneId]/[[...fflogsParams]]page.tsx</code>
+                FF Logs (Tonk Tonkers) | <code className={`code`}>src/app/fflogs/[world]/[characterName]/[metric]/[zoneId]/[[...fflogsParams]]page.tsx</code>
+              </u>
+          </Link>
+          <Link className={`cardLink marginBottom`} href="/fflogs">
+              <u>
+                FF Logs (manual lookup) | <code className={`code`}>src/app/fflogs/page.tsx</code>
               </u>
           </Link>
         </div>
