@@ -1,7 +1,6 @@
 import styles from './page.module.css'
 import Link from 'next/link';
 
-
 const WORLDS = [
     "Adamantoise",
     "Aegis",
@@ -89,16 +88,15 @@ const WORLDS = [
 export default function FFLogsPage() {
     
     return (
-        <main className={`cardWrapper`}>
-            <div className={`card textAlignCenter`}>
-                {WORLDS.map(world => 
-                    <div className={`${styles.worldCardLinkWrapper}`} key={world}>
-                        <Link className={`cardLink ${styles.worldCardLink}`} href={`/fflogs/${world}`}>
-                            {world}
-                        </Link>
-                    </div>
-                )}
-            </div>
-        </main>
+        <div className={`card textAlignCenter`}>
+            <h1>Select a World</h1>
+            {WORLDS.map(world => 
+                <div className={`${styles.worldCardLinkWrapper}`} key={world}>
+                    <Link className={`cardLink ${styles.worldCardLink}`} href={`/fflogs/${world}`}>
+                        {world}
+                    </Link>
+                </div>
+            )}
+        </div>
     )
 }

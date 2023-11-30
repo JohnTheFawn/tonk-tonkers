@@ -123,7 +123,6 @@ a {
   z-index: 2;
   font-family: var(--font-mono);
   
-  margin-top: .5em;
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.7);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
@@ -171,7 +170,6 @@ a {
   z-index: 2;
   font-family: var(--font-mono);
   
-  /*margin-top: .5em;*/
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
@@ -183,23 +181,42 @@ a {
 }
 
 .button{
+  cursor: pointer;
   padding: .5rem;
   border: 1px solid rgba(var(--callout-border-rgb), 1);
   border-radius: var(--border-radius);
   background-color: rgba(var(--callout-rgb), 0.5);
   display: inline-block;
+  transition-duration: .1s;
 }
-
-.button.buttonHighlighted{
-  box-shadow: 0 0 10px 0px rgba(255, 234, 0, .8);
+.buttonRed{
+  background-color: rgba(163, 41, 51, .4);
 }
-
 .buttonGreen{
   background-color: rgba(36, 166, 43, .4);
 }
 
-.buttonRed{
-  background-color: rgba(163, 41, 51, .4);
+.button:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.buttonGreen:hover{
+  background-color: rgba(36, 166, 43, .5);
+}
+.buttonRed:hover{
+  background-color: rgba(163, 41, 51, .5);
+}
+.button:active{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.buttonGreen:active{
+  background-color: rgba(36, 166, 43, .3);
+}
+.buttonRed:active{
+  background-color: rgba(163, 41, 51, .3);
+}
+
+.button.buttonHighlighted{
+  box-shadow: 0 0 10px 0px rgba(255, 234, 0, .8);
 }
 
 .marginTop{

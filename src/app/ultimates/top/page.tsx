@@ -10,7 +10,7 @@ function createToolboxLink(url: string){
 
 function createMechanicDescription(mechanicName: string, descriptions: string[]){
     return (
-        <div className={"card"}>
+        <div className={`card marginTop`}>
             <h3>
                 {mechanicName}
             </h3>
@@ -68,13 +68,13 @@ export default function TopPage() {
             </Link>
 
             {/*Phase 1*/}
-            <details className={"card"}>
+            <details className={`card marginTop`}>
                 <summary>
                     <h1>Phase 1</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={"card"}>  
+                <div className={`card marginTop`}>  
                     <h2>Toolbox</h2>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=758088204654761&preview=1")}
                     {createMechanicDescription(
@@ -88,14 +88,14 @@ export default function TopPage() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={"card"}>
+                <div className={`card marginTop`}>
                     <h2>Mit Cheat Sheet</h2>
                     <br/>
                     <p>10s mitigations should catch 2 stacks during Pantokrator</p>
                     <br/>
                     <p>Tanks use Rampart when Omega jumps away</p>
                     <br/>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -118,7 +118,7 @@ export default function TopPage() {
                             ]
                         )}
                     </div>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -153,13 +153,13 @@ export default function TopPage() {
             </details>
 
             {/*Phase 2*/}
-            <details className={"card"}>
+            <details className={`card marginTop`}>
                 <summary>
                     <h1>Phase 2</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={"card"}>  
+                <div className={`card marginTop`}>  
                     <h2>Toolbox</h2>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=324285310725761&preview=1#1")}
                     {createMechanicDescription(
@@ -183,12 +183,12 @@ export default function TopPage() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={"card"}>
+                <div className={`card marginTop`}>
                     <h2>Mit Cheat Sheet</h2>
                     <p>
                         Cast 15s mitigations when baiters are hit by male to catch 611 and Cosmo Memory
                     </p>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -206,7 +206,7 @@ export default function TopPage() {
                             ]
                         )}
                     </div>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -227,13 +227,13 @@ export default function TopPage() {
             </details>
 
             {/*Phase 3*/}
-            <details className={"card"}>
+            <details className={`card marginTop`}>
                 <summary>
                     <h1>Phase 3</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={"card"}>  
+                <div className={`card marginTop`}>  
                     <h2>Toolbox</h2>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=243183080764761&preview=1")}
                     {createMechanicDescription(
@@ -247,12 +247,12 @@ export default function TopPage() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={"card"}>
+                <div className={`card marginTop`}>
                     <h2>Mit Cheat Sheet</h2>
                     <p>
                         10s mitigations can be used any time after your 1st gcd to catch Hello World
                     </p>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -290,7 +290,7 @@ export default function TopPage() {
                             ]
                         )}
                     </div>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -330,13 +330,13 @@ export default function TopPage() {
             </details>
 
             {/*Phase 4*/}
-            <details className={"card"}>
+            <details className={`card marginTop`}>
                 <summary>
                     <h1>Phase 4</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={"card"}>  
+                <div className={`card marginTop`}>  
                     <h2>Toolbox</h2>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=595188367474761&preview=1")}
                     {createMechanicDescription(
@@ -346,12 +346,12 @@ export default function TopPage() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={"card"}>
+                <div className={`card marginTop`}>
                     <h2>Mit Cheat Sheet</h2>
                     <p>
                         10s mitigations should catch both a stack and a protean
                     </p>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -379,7 +379,7 @@ export default function TopPage() {
                             ]
                         )}
                     </div>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -396,13 +396,13 @@ export default function TopPage() {
             </details>
 
             {/*Phase 5*/}
-            <details className={"card"}>
+            <details className={`card marginTop`}>
                 <summary>
                     <h1>Phase 5</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={"card"}>  
+                <div className={`card marginTop`}>  
                     <h2>Toolboxes</h2>
                     <h3>Delta</h3>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=732288275415761&preview=1")}
@@ -418,7 +418,7 @@ export default function TopPage() {
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={"card"}>
+                <div className={`card marginTop`}>
                     <h2>Mit Cheat Sheet</h2>
                     <p>
                         15s mit should be used after the second hit of &#34;Solar Ray&#34;
@@ -426,7 +426,7 @@ export default function TopPage() {
                     <p>
                         10s mit should be used at the start of the &#34;Run Dynamis&#34; cast
                     </p>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -469,7 +469,7 @@ export default function TopPage() {
                             ]
                         )}
                     </div>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [
@@ -529,19 +529,19 @@ export default function TopPage() {
             </details>
 
             {/*Phase 6*/}
-            <details className={"card"}>
+            <details className={`card marginTop`}>
                 <summary>
                     <h1>Phase 6</h1>
                 </summary>
                 
                 {/*Toolbox*/}
-                <div className={"card"}>  
+                <div className={`card marginTop`}>  
                     <h2>Toolbox</h2>
                     {createToolboxLink("https://ff14.toolboxgaming.space/?id=829484027197761&preview=1")}
                 </div>
 
                 {/*Mit Cheat Sheet*/}
-                <div className={"card"}>
+                <div className={`card marginTop`}>
                     <h2>Mit Cheat Sheet</h2>
                     <p>
                         Tank LB Priority: WAR &gt; DRK &gt; PLD &gt; GNB
@@ -552,7 +552,7 @@ export default function TopPage() {
                     <p>
                         10s mitigations should catch both sets of meteors
                     </p>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>Tanks</h3>
                         {createMitTable(
                             [
@@ -615,7 +615,7 @@ export default function TopPage() {
                             ]
                         )}
                     </div>
-                    <div className={"card"}>
+                    <div className={`card marginTop`}>
                         <h3>DPS</h3>
                         {createMitTable(
                             [

@@ -147,7 +147,7 @@ export default function Home() {
       </Link>
 
       {websiteExamples.map(websiteExample => 
-        <div className={`card`} key={websiteExample.name}>
+        <div className={`card marginTop`} key={websiteExample.name}>
           <h2>{websiteExample.name}</h2>
           <code>{websiteExample.languages.join(', ')}</code>
           {websiteExample.url ? 
@@ -182,7 +182,7 @@ export default function Home() {
         </div>
       )}
 
-      <div className={`card`}>
+      <div className={`card marginTop`}>
         <h2>FFLogs Integration</h2>
         <code>Next.js, TypeScript, JavaScript, HTML, CSS, Chart.js</code>
         <div className={`paddingTop`}>
@@ -217,7 +217,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={`card`}>
+      <div className={`card marginTop`}>
         <h2>Plugins</h2>
         <div className={`marginBottom`}>
           <p>
@@ -258,7 +258,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className={`card`}>
+      <div className={`card marginTop`}>
         <h2>Ultimate Guides</h2>
         <Link className={`cardLink marginBottom`} href="/ultimates">
           <u>
