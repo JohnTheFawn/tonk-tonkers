@@ -77,7 +77,7 @@ export default function Home() {
         title: 'FFLogs (Tonk Tonkers)',
         url: '/fflogs/Coeurl/Tonk Tonkers/rdps/55/1070'
       }, {
-        title: 'FFLogs (manual)',
+        title: 'FFLogs (manual lookup)',
         url: '/fflogs'
       }],
       githubLink: 'https://github.com/JohnTheFawn/tonk-tonkers'
