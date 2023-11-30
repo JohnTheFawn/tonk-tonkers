@@ -25,6 +25,7 @@ export interface FFLogsEncounterRanking {
     todayTotalParses: number;
     report: {
       code: string;
+      fightID: number;
     };
     duration: number;
     spec: string;

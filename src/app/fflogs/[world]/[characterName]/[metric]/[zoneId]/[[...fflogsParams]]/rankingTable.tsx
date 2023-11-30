@@ -97,9 +97,9 @@ export default function RankingTable(
                         {convertMillisecondsToFriendly(ranking.duration)}
                     </td>
                     <td className={`textAlignRight`}>
-                        <Link href={`https://www.fflogs.com/reports/${ranking.report.code}`} target="_blank">
+                        <Link href={`https://www.fflogs.com/reports/${ranking.report.code}#fight=${ranking.report.fightID}`} target="_blank">
                             <u>
-                            {ranking.report.code}
+                                {ranking.report.code}
                             </u>
                         </Link>
                     </td>
