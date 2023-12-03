@@ -68,27 +68,27 @@ export default function RankingPieChart(
     const sliceOpacity = '.7';
     rankings.forEach(ranking => {
         const rank = ranking.historicalPercent;
-        let rankName = 'Gold';
+        let rankName = 'Gold (100%)';
         if(rank < 25){
-            rankName = 'Grey';
+            rankName = 'Grey (<25%)';
         }
         else if(rank < 50){
-            rankName = 'Green';
+            rankName = 'Green (25% - 49%)';
         }
         else if(rank < 75){
-            rankName = 'Blue';
+            rankName = 'Blue (50% - 74%)';
         }
         else if(rank < 95){
-            rankName = 'Purple';
+            rankName = 'Purple (75% - 94%)';
         }
         else if(rank < 99){
-            rankName = 'Orange';
+            rankName = 'Orange (95% - 98%)';
         }
         else if(rank < 100){
-            rankName = 'Pink';
+            rankName = 'Pink (99%)';
         }
         if(!rankingCounts[rankName]){
-            rankingNames.push(rankName + ' (100)');
+            rankingNames.push(rankName);
             rankingCounts[rankName] = 0;
             rankingColorArray.push(`rgba(${getRankingColor(rank)}, ${sliceOpacity})`);
         }
