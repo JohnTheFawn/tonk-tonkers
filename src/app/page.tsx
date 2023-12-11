@@ -262,21 +262,6 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className={`card marginTop`}>
-        <h2>Ultimate Guides</h2>
-        <Link className={`cardLink marginBottom`} href="/ultimates">
-          <u>
-            Ultimate Guides | <code className={`code`}>src/app/ultimates/page.tsx</code> 
-          </u>
-        </Link>
-        <p>
-          Nerdy guides I made for Final Fantasy 14 to share with my friends 🤓
-        </p>
-        <p>
-          For some context, these encounters are 17-20 minutes long, usually require a deathless or near-perfect run, are explicitly meant to be the 0.1% hard content. Folks typically spend 1-6 months learning the encounter before being able to complete it, the majority of the playerbase doesn&#39;t even step foot in them, with even fewer completing it.
-        </p>
-      </div>
-
     </main>
   )
 }
