@@ -6,11 +6,18 @@ import {
     convertMillisecondsToFriendly
 } from './utilityFunctions';
 import JobIcon from './jobIcon';
-import { FFLogsEncounterRanking } from './fflogsInterfaces';
+import { 
+    FFLogsEncounterRanking,
+    FFLogsReport
+} from './fflogsInterfaces';
 
 function convertStartTimeToFriendly(startTime: number){
   const startTimeDate = new Date(startTime);
   return (startTimeDate.getMonth() + 1) + '/' + startTimeDate.getDate() + '/' + startTimeDate.getFullYear();
+}
+
+function createXivAnalysisLink(report: FFLogsReport){
+    return `https://xivanalysis.com/fflogs/${report.code}/${report.fightID}`;
 }
 
 export default function RankingTable(
@@ -65,7 +72,7 @@ export default function RankingTable(
                 </th>
                 <th>
                     <h3>
-                        Log
+                        Links
                     </h3>
                 </th>
             </tr>
@@ -96,10 +103,18 @@ export default function RankingTable(
                     <td className={`textAlignRight`}>
                         {convertMillisecondsToFriendly(ranking.duration)}
                     </td>
-                    <td className={`textAlignRight`}>
+                    <td className={`textAlignCenter`}>
                         <Link href={`https://www.fflogs.com/reports/${ranking.report.code}#fight=${ranking.report.fightID}`} target="_blank">
                             <u>
-                                {ranking.report.code}
+                                FF Logs
+                            </u>
+                        </Link>
+                        &nbsp;
+                        |
+                        &nbsp;
+                        <Link href={createXivAnalysisLink(ranking.report)} target="_blank">
+                            <u>
+                                Analyze
                             </u>
                         </Link>
                     </td>

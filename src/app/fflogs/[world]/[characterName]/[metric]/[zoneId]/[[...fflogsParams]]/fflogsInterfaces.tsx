@@ -34,3 +34,9 @@ export interface FFLogsEncounterRanking {
     bestSpec: string;
     startTime: number;
 };
+
+export interface FFLogsReport {
+    code: string;
+    startTime: number;
+    fightID: number;
+}
