@@ -18,15 +18,18 @@ export interface FFLogsZoneRanking {
     };
 };
 
+export interface FFLogsReport {
+    code: string;
+    startTime: number;
+    fightID: number;
+}
+
 export interface FFLogsEncounterRanking {
     historicalPercent: number;
     todayPercent: number;
     historicalTotalParses: number;
     todayTotalParses: number;
-    report: {
-      code: string;
-      fightID: number;
-    };
+    report: FFLogsReport;
     duration: number;
     spec: string;
     rDPS: number;
@@ -34,9 +37,3 @@ export interface FFLogsEncounterRanking {
     bestSpec: string;
     startTime: number;
 };
-
-export interface FFLogsReport {
-    code: string;
-    startTime: number;
-    fightID: number;
-}
